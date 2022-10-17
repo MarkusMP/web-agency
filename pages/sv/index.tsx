@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
-import { getClient } from "../lib/sanity.server";
+import { getClient } from "../../lib/sanity.server";
 import { NextSeo } from "next-seo";
-import Layout from "../components/Layout";
-import { urlFor, usePreviewSubscription } from "../lib/sanity";
-import { QUERY_HEADER, QUERY_HOME } from "../data";
+import Layout from "../../components/Layout";
+import { urlFor, usePreviewSubscription } from "../../lib/sanity";
+import { QUERY_HEADER, QUERY_HOME } from "../../data";
 
 function filterDataToSingleItem(data: any, preview: any) {
   if (!Array.isArray(data)) {
@@ -25,7 +25,7 @@ export async function getStaticProps({ params, preview = false }: any) {
   const client = await getClient(preview);
 
   const query = QUERY_HOME;
-  const queryParams = { language: "en-us" };
+  const queryParams = { language: "sv-se" };
   const data = await client.fetch(query, queryParams);
 
   if (!data) return { notFound: true };
@@ -45,7 +45,6 @@ export async function getStaticProps({ params, preview = false }: any) {
     return {
       props: {
         preview,
-        // settings,
         header,
         data: { page, query, queryParams },
       },
@@ -53,7 +52,7 @@ export async function getStaticProps({ params, preview = false }: any) {
     };
   }
 }
-const Home: NextPage = ({ data, preview, settings, header }: any) => {
+const Home: NextPage = ({ data, preview, header, settings }: any) => {
   const { data: previewData } = usePreviewSubscription(data?.query, {
     params: data?.queryParams ?? {},
     initialData: data?.page,
