@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
+import useWindowDimensions from "../hooks/useWindowsDimensions";
 import { IHeader } from "../interfaces";
 import Dropdown from "./Dropdown";
 
@@ -11,9 +12,20 @@ type Props = {
 const Header = ({ data }: Props) => {
   const [open, setOpen] = useState(false);
   const [path, setPath] = useState(true);
+  const [navbar, setNavbar] = useState(false);
   const btnRef = useRef();
   const menuRef = useRef(null);
   const router = useRouter();
+
+  const { width }: any = useWindowDimensions();
+
+  const changeBackground = () => {
+    if (window.scrollY >= 80) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+    }
+  };
 
   useEffect(() => {
     if (router.pathname.startsWith("/sv")) {
@@ -28,20 +40,31 @@ const Header = ({ data }: Props) => {
       }
     };
     document.addEventListener("mousedown", handler);
+    window.addEventListener("scroll", changeBackground);
+    if (open && width < 767) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+    }
 
     return () => {
       document.removeEventListener("mousedown", handler);
+      window.removeEventListener("scroll", changeBackground);
     };
-  }, [router]);
+  }, [router, width, open]);
 
   return (
     <header>
       <nav
-        className={"bg-black flex items-center fixed w-full"}
+        className={
+          navbar
+            ? "bg-black flex items-center fixed w-full z-[3]"
+            : "bg-transparent flex items-center fixed w-full z-[3]"
+        }
         style={{ height: "80px" }}
         ref={menuRef}
       >
-        <div className="xl:mx-auto xl:container w-full px-6 md:flex md:items-center md:justify-between bg-transparent">
+        <div className="xl:mx-auto xl:container w-full px-6 lg:flex lg:items-center lg:justify-between bg-transparent">
           <div className="flex justify-between items-center z-[3]">
             <Link href={router.pathname.startsWith("/sv") ? "/sv" : "/"}>
               <span className="text-white blinker uppercase font-semibold text-3xl tracking-wider cursor-pointer">
@@ -53,8 +76,8 @@ const Header = ({ data }: Props) => {
               ref={btnRef as any}
               className={
                 open
-                  ? "open text-black z-[3] cursor-pointer text-xl leading-none hamburger flex items-center px-3 py-1 md:hidden outline-none focus:outline-none"
-                  : "text-black cursor-pointer z-[3] text-xl leading-none hamburger flex items-center px-3 py-1 md:hidden outline-none focus:outline-none"
+                  ? "open text-black z-[3] cursor-pointer text-xl leading-none hamburger flex items-center px-3 py-1 lg:hidden outline-none focus:outline-none"
+                  : "text-black cursor-pointer z-[3] text-xl leading-none hamburger flex items-center px-3 py-1 lg:hidden outline-none focus:outline-none"
               }
               type="button"
               onClick={() => setOpen((prevState) => !prevState)}
@@ -68,12 +91,14 @@ const Header = ({ data }: Props) => {
           <div
             className={
               open
-                ? `absolute md:relative top-[80px] z-[-1] md:z-[3] md:top-[0px] w-full left-0 py-2 md:py-0 transition-all md:transition-none`
-                : "absolute md:relative top-[-400px] z-[-1] md:z-[3] md:top-[0px] bg-transparent w-full left-0 py-2 md:py-0"
+                ? `absolute lg:relative top-[80px] z-[-1] lg:z-[3] lg:top-[0px] ${
+                    navbar ? "bg-secondary " : "bg-transparent"
+                  } w-full left-0 py-2 lg:py-0 transition-all lg:transition-none`
+                : "absolute lg:relative top-[-400px] z-[-1] lg:z-[3] lg:top-[0px] bg-transparent w-full left-0 py-2 lg:py-0"
             }
           >
-            <div className="text-white text-center flex xl:container mx-auto px-5 md:px-0 flex-col md:flex-row w-full">
-              <ul className="flex flex-col md:flex-row md:ml-auto">
+            <div className="text-white text-center flex xl:container mx-auto px-5 lg:px-0 flex-col lg:flex-row w-full">
+              <ul className="flex flex-col lg:flex-row lg:ml-auto">
                 {data?.menu &&
                   data?.menu.map((item) =>
                     item.page && item.page.slug === "#" ? (
@@ -84,7 +109,7 @@ const Header = ({ data }: Props) => {
                         key={item._id}
                       />
                     ) : (
-                      <li className="px-0 md:pl-6 py-2 md:py-0" key={item._id}>
+                      <li className="px-0 lg:pl-6 py-2 lg:py-0" key={item._id}>
                         <Link
                           href={
                             item.page && item.page.slug
@@ -102,10 +127,10 @@ const Header = ({ data }: Props) => {
                     )
                   )}
               </ul>
-              <ul className="md:ml-auto">
+              <ul className="lg:ml-auto">
                 {path ? (
                   <Link href={"/"}>
-                    <li className="px-0 md:pl-6 py-2 md:py-0">
+                    <li className="px-0 lg:pl-6 py-2 lg:py-0">
                       <a className="blinker tracking-wider text-lg cursor-pointer">
                         ENG
                       </a>
@@ -113,7 +138,7 @@ const Header = ({ data }: Props) => {
                   </Link>
                 ) : (
                   <Link href={"/sv"}>
-                    <li className="px-0 md:pl-6 py-2 md:py-0">
+                    <li className="px-0 lg:pl-6 py-2 lg:py-0">
                       <a className="blinker tracking-wider text-lg cursor-pointer">
                         SV
                       </a>

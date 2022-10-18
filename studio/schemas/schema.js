@@ -8,6 +8,7 @@ import home from "./pages/home";
 import pages from "./pages/pages";
 import links from "./links";
 import footer from "./navigation/footer";
+import hero from "./sections/hero";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -22,5 +23,6 @@ export default createSchema({
     home,
     pages,
     links,
+    hero,
   ]),
 });

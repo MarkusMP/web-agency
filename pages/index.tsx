@@ -4,6 +4,7 @@ import { NextSeo } from "next-seo";
 import Layout from "../components/Layout";
 import { urlFor, usePreviewSubscription } from "../lib/sanity";
 import { QUERY_FOOTER, QUERY_HEADER, QUERY_HOME } from "../data";
+import RenderSections from "../components/RenderSections";
 
 function filterDataToSingleItem(data: any, preview: any) {
   if (!Array.isArray(data)) {
@@ -89,7 +90,7 @@ const Home: NextPage = ({ data, preview, settings, header, footer }: any) => {
         }}
       />
       <Layout header={header} footer={footer}>
-        hello
+        {page?.content && <RenderSections sections={page.content} />}
       </Layout>
     </>
   );
