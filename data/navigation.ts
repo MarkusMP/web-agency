@@ -17,3 +17,27 @@ parent->{_id},
     }
   }
       }`;
+
+export const QUERY_FOOTER = `
+*[_type=="footer" && __i18n_lang == $language][0] {
+  copyright,
+  links,
+  linksList[]-> {
+    title,
+    _id,
+    page->{
+    "slug": slug.current
+   }
+  },
+logo,
+menu[]-> {
+    title,
+    _id,
+    page->{
+    "slug": slug.current
+   }
+  },
+services,
+social[]
+}
+`;

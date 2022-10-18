@@ -2,7 +2,7 @@ import React from "react";
 import { groq } from "next-sanity";
 import { urlFor, usePreviewSubscription } from "../lib/sanity";
 import { getClient } from "../lib/sanity.server";
-import { QUERY_HEADER, QUERY_HOME } from "../data";
+import { QUERY_FOOTER, QUERY_HEADER, QUERY_HOME } from "../data";
 import Layout from "../components/Layout";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
@@ -46,9 +46,10 @@ export async function getStaticProps({ params, preview = false }: any) {
   if (data.length === 0) {
     return { notFound: true };
   } else if (data.length > 0) {
-    const { header }: any = await client.fetch(
+    const { header, footer }: any = await client.fetch(
       `{
         "header": ${QUERY_HEADER},
+        "footer": ${QUERY_FOOTER}
       }`,
       queryParams
     );
@@ -61,7 +62,7 @@ export async function getStaticProps({ params, preview = false }: any) {
         // Pass down the "preview mode" boolean to the client-side
         preview,
         header,
-
+        footer,
         // // Pass down the initial content, and our query
         data: { page, query, queryParams },
       },
@@ -119,7 +120,9 @@ export default function Page({ data, preview, header, footer, settings }: any) {
           ],
         }}
       />
-      <Layout header={header}>HELLO</Layout>
+      <Layout header={header} footer={footer}>
+        HELLO
+      </Layout>
     </>
   );
 }

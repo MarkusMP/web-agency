@@ -1,8 +1,22 @@
 import S from "@sanity/desk-tool/structure-builder";
-import { RiLayoutTop2Line } from "react-icons/ri";
+import { RiLayoutBottom2Line, RiLayoutTop2Line } from "react-icons/ri";
 import { IoDocumentsOutline } from "react-icons/io5";
 import { FaHome } from "react-icons/fa";
-import { BsLink, BsLink45Deg } from "react-icons/bs";
+import { BsLink45Deg } from "react-icons/bs";
+import Iframe from "sanity-plugin-iframe-pane";
+import resolveProductionUrl from "../resolveProductionUrl";
+
+export const getDefaultDocumentNode = () => {
+  return S.document().views([
+    S.view.form(),
+    S.view
+      .component(Iframe)
+      .options({
+        url: (doc) => resolveProductionUrl(doc),
+      })
+      .title("Preview"),
+  ]);
+};
 
 export default () =>
   S.list()
@@ -36,6 +50,20 @@ export default () =>
                     .canHandleIntent(
                       S.documentTypeList("pages").getCanHandleIntent()
                     )
+                    .child((id) =>
+                      S.document()
+                        .schemaType("home")
+                        .documentId(id)
+                        .views([
+                          S.view.form(),
+                          S.view
+                            .component(Iframe)
+                            .options({
+                              url: (doc) => resolveProductionUrl(doc),
+                            })
+                            .title("Preview"),
+                        ])
+                    )
                 ),
               S.listItem()
                 .title("Pages in English")
@@ -48,6 +76,20 @@ export default () =>
                     .canHandleIntent(
                       S.documentTypeList("pages").getCanHandleIntent()
                     )
+                    .child((id) =>
+                      S.document()
+                        .schemaType("pages")
+                        .documentId(id)
+                        .views([
+                          S.view.form(),
+                          S.view
+                            .component(Iframe)
+                            .options({
+                              url: (doc) => resolveProductionUrl(doc),
+                            })
+                            .title("Preview"),
+                        ])
+                    )
                 ),
               S.listItem()
                 .title("Pages in Swedish")
@@ -59,6 +101,20 @@ export default () =>
                     .params({ baseLanguage: `en_US` })
                     .canHandleIntent(
                       S.documentTypeList("pages").getCanHandleIntent()
+                    )
+                    .child((id) =>
+                      S.document()
+                        .schemaType("pages")
+                        .documentId(id)
+                        .views([
+                          S.view.form(),
+                          S.view
+                            .component(Iframe)
+                            .options({
+                              url: (doc) => resolveProductionUrl(doc),
+                            })
+                            .title("Preview"),
+                        ])
                     )
                 ),
             ])
@@ -119,5 +175,15 @@ export default () =>
             .schemaType("header")
             .filter('_type == "header"')
             .canHandleIntent(S.documentTypeList("header").getCanHandleIntent())
+        ),
+      S.listItem()
+        .title(`Footer`)
+        .icon(RiLayoutBottom2Line)
+        .child(
+          S.documentList()
+            .title(`footer documents`)
+            .schemaType("footer")
+            .filter('_type == "footer"')
+            .canHandleIntent(S.documentTypeList("footer").getCanHandleIntent())
         ),
     ]);
