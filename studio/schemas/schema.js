@@ -10,6 +10,8 @@ import links from "./links";
 import footer from "./navigation/footer";
 import hero from "./sections/hero";
 import feature from "./sections/feature";
+import services from "./other/services";
+import servicesList from "./sections/servicesList";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -26,5 +28,7 @@ export default createSchema({
     links,
     hero,
     feature,
+    servicesList,
+    services,
   ]),
 });

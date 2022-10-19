@@ -96,6 +96,43 @@ body {
   border-width: 0 0 3px 3px;
 }
 
+/* services border */
+
+.serviceItem {
+  position: relative;
+}
+.serviceItem:before,
+.serviceItem:after,
+.serviceItem > :first-child:before,
+.serviceItem > :first-child:after {
+  position: absolute;
+  content: " ";
+  width: 30px;
+  height: 30px;
+  border-color: #fff;
+  border-style: solid;
+}
+.serviceItem:before {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+.serviceItem:after {
+  top: 0;
+  right: 0;
+  border-width: 1px 1px 0 0;
+}
+.serviceItem > :first-child:before {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+}
+.serviceItem > :first-child:after {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 1px 1px;
+}
+
 .slide {
   padding: 0;
   margin: 0;

@@ -21,3 +21,28 @@ export interface IFeature {
   _key: string;
   _type: string;
 }
+
+export interface IServicesList {
+  title: string;
+  _key: string;
+  _type: string;
+  listService: IServiceListItem[];
+}
+
+export interface IServiceListItem {
+  btnText: string;
+  description: string;
+  title: string;
+  _id: string;
+  image: {
+    _type: string;
+    alt: string;
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
+  page: {
+    slug: string;
+  };
+}

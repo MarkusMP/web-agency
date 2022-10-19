@@ -7,6 +7,15 @@ content[] {
             page-> {
             "slug": slug.current
             },
-            
+            listService[]->{
+                  _id,
+                  title,
+                  image, 
+                  description,
+                  btnText,
+                  page-> {
+                        "slug": slug.current
+                        },
+                }
       }
 }`;

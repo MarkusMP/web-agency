@@ -5,6 +5,7 @@ import { FaHome } from "react-icons/fa";
 import { BsLink45Deg } from "react-icons/bs";
 import Iframe from "sanity-plugin-iframe-pane";
 import resolveProductionUrl from "../resolveProductionUrl";
+import { BsBoxSeam } from "react-icons/bs";
 
 export const getDefaultDocumentNode = () => {
   return S.document().views([
@@ -163,8 +164,51 @@ export default () =>
                 ),
             ])
         ),
-
-      ,
+      S.divider(),
+      S.listItem()
+        .title("Services")
+        .icon(BsBoxSeam)
+        .child(
+          S.list()
+            .title("Services languages filter")
+            .items([
+              S.listItem()
+                .title("All services")
+                .child(
+                  S.documentList()
+                    .title(`services documents`)
+                    .schemaType("services")
+                    .filter('_type == "services"')
+                    .canHandleIntent(
+                      S.documentTypeList("services").getCanHandleIntent()
+                    )
+                ),
+              S.listItem()
+                .title("Services in English")
+                .child(
+                  S.documentList()
+                    .title(`services documents`)
+                    .schemaType("services")
+                    .filter('_type == "services" && __i18n_lang == "en-us"')
+                    .params({ baseLanguage: `en_US` })
+                    .canHandleIntent(
+                      S.documentTypeList("services").getCanHandleIntent()
+                    )
+                ),
+              S.listItem()
+                .title("Services in Swedish")
+                .child(
+                  S.documentList()
+                    .title(`services documents`)
+                    .schemaType("services")
+                    .filter('_type == "services" && __i18n_lang == "sv-se"')
+                    .params({ baseLanguage: `en_US` })
+                    .canHandleIntent(
+                      S.documentTypeList("services").getCanHandleIntent()
+                    )
+                ),
+            ])
+        ),
       S.divider(),
       S.listItem()
         .title(`Header`)
