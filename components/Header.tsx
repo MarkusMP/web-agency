@@ -41,7 +41,7 @@ const Header = ({ data }: Props) => {
     };
     document.addEventListener("mousedown", handler);
     window.addEventListener("scroll", changeBackground);
-    if (open && width < 767) {
+    if (open && width < 1024) {
       setNavbar(true);
     } else {
       setNavbar(false);
@@ -64,10 +64,10 @@ const Header = ({ data }: Props) => {
         style={{ height: "80px" }}
         ref={menuRef}
       >
-        <div className="xl:mx-auto xl:container w-full px-6 lg:flex lg:items-center lg:justify-between bg-transparent">
+        <div className="xl:mx-auto xl:container w-full px-6 lg:flex lg:items-center lg:justify-between bg-transparent z-[3]">
           <div className="flex justify-between items-center z-[3]">
             <Link href={router.pathname.startsWith("/sv") ? "/sv" : "/"}>
-              <span className="text-white blinker uppercase font-semibold text-3xl tracking-wider cursor-pointer">
+              <span className="text-white blinker uppercase font-semibold text-3xl tracking-wider cursor-pointer z-[3]">
                 {data?.logo && data.logo}
               </span>
             </Link>

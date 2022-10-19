@@ -21,7 +21,7 @@ const Dropdown = ({ item, data, path }: any) => {
   }, []);
 
   return (
-    <li className="px-0 md:pl-6 relative mx-auto" ref={menuRef} key={item._id}>
+    <li className="px-0 lg:pl-6 relative mx-auto" ref={menuRef} key={item._id}>
       <button
         type="button"
         className="mx-auto uppercase transition duration-150 border-b-2 mt-[2] border-transparent hover:border-white blinker tracking-wider text-lg cursor-pointer flex items-center"

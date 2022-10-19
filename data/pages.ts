@@ -4,6 +4,9 @@ titleSEO,
 descriptionSEO,
 content[] {
       ...,
-     
+            page-> {
+            "slug": slug.current
+            },
+            
       }
-      }`;
+}`;

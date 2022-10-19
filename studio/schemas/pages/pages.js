@@ -47,7 +47,7 @@ export default {
       name: "content",
       type: "array",
       title: "Page sections",
-      of: [{ type: "hero" }],
+      of: [{ type: "hero" }, { type: "feature" }],
     },
     {
       title: "Title for SEO",

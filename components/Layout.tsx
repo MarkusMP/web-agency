@@ -13,7 +13,7 @@ export default function Layout({ children, header, footer }: Props) {
   return (
     <>
       <Header data={header} />
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col">
         <main className="flex-grow">{children}</main>
       </div>
       <Footer data={footer} />
