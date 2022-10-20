@@ -28,7 +28,7 @@ const BlogList = ({
                 <Link
                   href={
                     router.pathname.startsWith("/sv")
-                      ? `/sv/${item.slug.current}`
+                      ? `/${item.slug.current}`
                       : `/${item.slug.current}`
                   }
                 >
@@ -40,7 +40,7 @@ const BlogList = ({
                 <Link
                   href={
                     router.pathname.startsWith("/sv")
-                      ? `/sv/${item.slug.current}`
+                      ? `/${item.slug.current}`
                       : `/${item.slug.current}`
                   }
                 >
