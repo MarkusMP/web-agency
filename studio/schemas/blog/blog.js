@@ -1,16 +1,13 @@
 import React from "react";
-// import { IoDocumentsOutline } from "react-icons/io5";
-import SlugInput from "sanity-plugin-better-slug";
 // import { MediaEditor } from "sanity-plugin-asset-source-ogimage";
+import SlugInput from "sanity-plugin-better-slug";
 // import { blogPostTwitterLayout } from "../../parts/BlogPostTwitterLayout";
-import { IoDocumentTextOutline } from "react-icons/io5";
 
 export default {
-  name: "pages",
+  name: "blog",
+  title: "Blog",
   type: "document",
-  title: "Pages",
   i18n: true,
-  icon: IoDocumentTextOutline,
   fieldsets: [
     {
       title: "SEO",
@@ -22,40 +19,6 @@ export default {
     },
   ],
   fields: [
-    {
-      title: "Title for internal reference",
-      description:
-        "This won't show up for users, just make sure you add a descriptive name which will make it easy to find this page later when adding link or searching & browsing the CMS.",
-      name: "title",
-      type: "string",
-    },
-    {
-      title: "Relative address on the website",
-      description: "Defines the URL of the page in the website. Example (test)",
-      name: "slug",
-      type: "slug",
-      inputComponent: SlugInput,
-      options: {
-        source: "title",
-        basePath: "webbtopia.com",
-        maxLength: 200, // will be ignored if slugify is set
-        slugify: (input) =>
-          input.toLowerCase().replace(/\s+/g, "-").slice(0, 200),
-      },
-    },
-    {
-      name: "content",
-      type: "array",
-      title: "Page sections",
-      of: [
-        { type: "hero" },
-        { type: "feature" },
-        { type: "servicesList" },
-        { type: "workList" },
-        { type: "blogList" },
-        { type: "cta" },
-      ],
-    },
     {
       title: "Title for SEO",
       description:
@@ -108,5 +71,49 @@ export default {
     //     ],
     //   },
     // },
+    {
+      name: "title",
+      title: "Title",
+      type: "string",
+    },
+
+    {
+      title: "Relative address on the website",
+      description:
+        "Defines the URL of the page in the website. Example (blogg/test)",
+      name: "slug",
+      type: "slug",
+      inputComponent: SlugInput,
+      options: {
+        source: "title",
+        basePath: "webbtopia.com",
+        maxLength: 200, // will be ignored if slugify is set
+        slugify: (input) =>
+          input.toLowerCase().replace(/\s+/g, "-").slice(0, 200),
+      },
+    },
+    {
+      name: "description",
+      title: "Description (Preview text)",
+      type: "string",
+    },
+    {
+      name: "mainImage",
+      title: "Main image (1280x720 resolution)",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: "publishedAt",
+      title: "Published at",
+      type: "datetime",
+    },
+    {
+      name: "body",
+      title: "Body",
+      type: "blockContent",
+    },
   ],
 };

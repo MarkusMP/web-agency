@@ -30,7 +30,7 @@ export async function getStaticPaths(preview = false) {
 
   return {
     paths: pages
-      .filter((slug: any) => slug !== "#")
+      .filter((slug: any) => !slug.includes("blog/", "/#"))
       .map((slug: any) => `/${slug}`),
 
     fallback: "blocking",

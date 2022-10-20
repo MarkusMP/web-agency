@@ -1,12 +1,15 @@
 import React from "react";
 import { groq } from "next-sanity";
-import { urlFor, usePreviewSubscription } from "../../lib/sanity";
-import { getClient } from "../../lib/sanity.server";
-import { QUERY_FOOTER, QUERY_HEADER, QUERY_HOME } from "../../data";
-import Layout from "../../components/Layout";
+import { urlFor, usePreviewSubscription } from "../../../lib/sanity";
+import { getClient } from "../../../lib/sanity.server";
+import { QUERY_FOOTER, QUERY_HEADER, QUERY_HOME } from "../../../data";
+import Layout from "../../../components/Layout";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import RenderSections from "../../components/RenderSections";
+import RenderSections from "../../../components/RenderSections";
+import { PortableText } from "@portabletext/react";
+import Image from "next/image";
+import Link from "next/link";
 
 function filterDataToSingleItem(data: any, preview: any) {
   if (!Array.isArray(data)) {
@@ -25,14 +28,14 @@ function filterDataToSingleItem(data: any, preview: any) {
 }
 
 export async function getStaticPaths(preview = false) {
-  const allSlugsQuerySv = groq`*[defined(slug.current) && __i18n_lang == "sv-se"][].slug.current `;
-  const pages = await getClient(preview).fetch(allSlugsQuerySv);
+  const allSlugsQuery = groq`*[defined(slug.current) && __i18n_lang == "sv-se"][].slug.current`;
+  const pages = await getClient(preview).fetch(allSlugsQuery);
 
+  console.log(pages.filter((slug: any) => slug.includes("blogg/")));
   return {
     paths: pages
-      .filter((slug: any) => !slug.includes("blogg/", "/#"))
-      .map((slug: any) => `/sv/${slug}`),
-
+      .filter((slug: any) => slug.includes("blogg/"))
+      .map((slug: any) => `/${slug}`),
     fallback: "blocking",
   };
 }
@@ -49,9 +52,10 @@ export async function getStaticProps({ params, preview = false }: any) {
   } else if (data.length > 0) {
     const { header, footer }: any = await client.fetch(
       `{
-        "header": ${QUERY_HEADER},
-        "footer": ${QUERY_FOOTER},
-      }`,
+      "header": ${QUERY_HEADER},
+      "footer": ${QUERY_FOOTER},
+    
+    }`,
       queryParams
     );
 
@@ -64,7 +68,8 @@ export async function getStaticProps({ params, preview = false }: any) {
         preview,
         header,
         footer,
-        // // Pass down the initial content, and our query
+
+        // Pass down the initial content, and our query
         data: { page, query, queryParams },
       },
       revalidate: 60,
@@ -72,7 +77,7 @@ export async function getStaticProps({ params, preview = false }: any) {
   }
 }
 
-export default function Page({ data, preview, header, footer, settings }: any) {
+export default function Page({ data, preview, header, footer }: any) {
   const { data: previewData } = usePreviewSubscription(data?.query, {
     params: data?.queryParams ?? {},
     // The hook will return this on first render
@@ -90,6 +95,23 @@ export default function Page({ data, preview, header, footer, settings }: any) {
   // of data existing when Editors are creating new documents.
   // It'll be completely blank when they start!
 
+  const myPortableTextComponents = {
+    marks: {
+      link: ({ children, value }: any) => {
+        return (
+          <a
+            href={value.href}
+            rel={"noreferrer noopener"}
+            target="_blank"
+            className="text-primary"
+          >
+            {children}
+          </a>
+        );
+      },
+    },
+  };
+
   const url = page?.ogImage && (urlFor(page.ogImage).url() as string);
 
   const router = useRouter();
@@ -106,9 +128,9 @@ export default function Page({ data, preview, header, footer, settings }: any) {
       <NextSeo
         title={page?.titleSEO}
         description={page?.descriptionSEO}
-        canonical={`${settings?.url}/${page.slug}`}
+        // canonical={`${settings?.url}/${page.slug}`}
         openGraph={{
-          url: `${settings?.url}/`,
+          //   url: `${settings?.url}/`,
           title: page?.titleSEO,
           description: page?.descriptionSEO,
           images: [
@@ -122,7 +144,41 @@ export default function Page({ data, preview, header, footer, settings }: any) {
         }}
       />
       <Layout header={header} footer={footer}>
-        {page?.content && <RenderSections sections={page.content} />}
+        {/* <section className="pt-[80px] container mx-auto px-5">
+          <div className="max-w-2xl mx-auto py-12">
+            <Link href={`/blogg`}>
+              <button className="px-4 py-2 mb-4 bg-primary hover:bg-secondary text-light rounded transition-all">
+                Gå tillbaka
+              </button>
+            </Link>
+            <h1 className="text-3xl font-bold pb-4">
+              {page?.title && page.title}
+            </h1>
+
+            {page?.mainImage && (
+              <Image
+                className="image rounded"
+                loader={() => urlFor(page?.mainImage && page?.mainImage).url()}
+                src={urlFor(page?.mainImage && page?.mainImage).url()}
+                alt={page?.title}
+                unoptimized={true}
+                width="100%"
+                height="0"
+                objectFit="contain"
+                priority
+              />
+            )}
+
+            <div className="prose pt-4">
+              {page?.body && (
+                <PortableText
+                  value={page?.body}
+                  components={myPortableTextComponents}
+                />
+              )}
+            </div>
+          </div>
+        </section> */}
       </Layout>
     </>
   );

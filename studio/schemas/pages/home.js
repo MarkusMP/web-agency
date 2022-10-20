@@ -30,7 +30,14 @@ export default {
       name: "content",
       type: "array",
       title: "Page sections",
-      of: [{ type: "hero" }, { type: "feature" }, { type: "servicesList" }],
+      of: [
+        { type: "hero" },
+        { type: "feature" },
+        { type: "servicesList" },
+        { type: "workList" },
+        { type: "blogList" },
+        { type: "cta" },
+      ],
     },
     {
       title: "Title for SEO",

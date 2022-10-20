@@ -12,6 +12,12 @@ import hero from "./sections/hero";
 import feature from "./sections/feature";
 import services from "./other/services";
 import servicesList from "./sections/servicesList";
+import work from "./work/work";
+import workList from "./sections/workList";
+import blog from "./blog/blog";
+import blockContent from "./blog/blockContent";
+import blogList from "./sections/blogList";
+import cta from "./sections/cta";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -30,5 +36,11 @@ export default createSchema({
     feature,
     servicesList,
     services,
+    work,
+    workList,
+    blog,
+    blockContent,
+    blogList,
+    cta,
   ]),
 });

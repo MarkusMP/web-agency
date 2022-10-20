@@ -141,6 +141,37 @@ body {
   animation: slide-in-anim 0.5s ease-out forwards;
 }
 
+/* carousel styling */
+.carousel .control-prev,
+.control-next {
+  background-color: #000 !important;
+  opacity: 1;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  top: 45% !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel .control-prev {
+  left: 20px !important;
+}
+.carousel .control-next {
+  right: 20px !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .carousel .control-prev {
+    display: none !important;
+  }
+  .carousel .control-next {
+    display: none !important;
+  }
+}
+
 @keyframes slide-in-anim {
   0% {
     opacity: 0;

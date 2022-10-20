@@ -1,11 +1,12 @@
 import S from "@sanity/desk-tool/structure-builder";
 import { RiLayoutBottom2Line, RiLayoutTop2Line } from "react-icons/ri";
-import { IoDocumentsOutline } from "react-icons/io5";
+import { IoDocumentsOutline, IoDocumentTextOutline } from "react-icons/io5";
 import { FaHome } from "react-icons/fa";
 import { BsLink45Deg } from "react-icons/bs";
 import Iframe from "sanity-plugin-iframe-pane";
 import resolveProductionUrl from "../resolveProductionUrl";
 import { BsBoxSeam } from "react-icons/bs";
+import { MdWorkOutline } from "react-icons/md";
 
 export const getDefaultDocumentNode = () => {
   return S.document().views([
@@ -165,6 +166,96 @@ export default () =>
             ])
         ),
       S.divider(),
+
+      S.listItem()
+        .title("blog")
+        .icon(IoDocumentTextOutline)
+        .child(
+          S.list()
+            .title("blog languages filter")
+            .items([
+              S.listItem()
+                .title("All blog")
+                .child(
+                  S.documentList()
+                    .title(`blog documents`)
+                    .schemaType("blog")
+                    .filter('_type == "blog"')
+                    .canHandleIntent(
+                      S.documentTypeList("blog").getCanHandleIntent()
+                    )
+                ),
+              S.listItem()
+                .title("blog in English")
+                .child(
+                  S.documentList()
+                    .title(`blog documents`)
+                    .schemaType("blog")
+                    .filter('_type == "blog" && __i18n_lang == "en-us"')
+                    .params({ baseLanguage: `en_US` })
+                    .canHandleIntent(
+                      S.documentTypeList("blog").getCanHandleIntent()
+                    )
+                ),
+              S.listItem()
+                .title("blog in Swedish")
+                .child(
+                  S.documentList()
+                    .title(`blog documents`)
+                    .schemaType("blog")
+                    .filter('_type == "blog" && __i18n_lang == "sv-se"')
+                    .params({ baseLanguage: `en_US` })
+                    .canHandleIntent(
+                      S.documentTypeList("blog").getCanHandleIntent()
+                    )
+                ),
+            ])
+        ),
+      S.divider(),
+      S.listItem()
+        .title("work")
+        .icon(MdWorkOutline)
+        .child(
+          S.list()
+            .title("work languages filter")
+            .items([
+              S.listItem()
+                .title("All work")
+                .child(
+                  S.documentList()
+                    .title(`work documents`)
+                    .schemaType("work")
+                    .filter('_type == "work"')
+                    .canHandleIntent(
+                      S.documentTypeList("work").getCanHandleIntent()
+                    )
+                ),
+              S.listItem()
+                .title("work in English")
+                .child(
+                  S.documentList()
+                    .title(`work documents`)
+                    .schemaType("work")
+                    .filter('_type == "work" && __i18n_lang == "en-us"')
+                    .params({ baseLanguage: `en_US` })
+                    .canHandleIntent(
+                      S.documentTypeList("work").getCanHandleIntent()
+                    )
+                ),
+              S.listItem()
+                .title("work in Swedish")
+                .child(
+                  S.documentList()
+                    .title(`work documents`)
+                    .schemaType("work")
+                    .filter('_type == "work" && __i18n_lang == "sv-se"')
+                    .params({ baseLanguage: `en_US` })
+                    .canHandleIntent(
+                      S.documentTypeList("work").getCanHandleIntent()
+                    )
+                ),
+            ])
+        ),
       S.listItem()
         .title("Services")
         .icon(BsBoxSeam)

@@ -15,7 +15,17 @@ content[] {
                   btnText,
                   page-> {
                         "slug": slug.current
-                        },
-                }
+                  },
+            },
+            listWork[]-> {
+                  image,
+                  link,
+                  _id
+            },
+            listBlog[]-> {
+                  title,
+                  _id,
+                  slug
+            }
       }
 }`;
