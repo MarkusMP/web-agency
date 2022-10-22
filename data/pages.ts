@@ -29,3 +29,36 @@ content[] {
             }
       }
 }`;
+
+export const QUERY_PAGE = `
+*[_type == "pages" && slug.current == $slug && __i18n_lang == $language] {
+      titleSEO,
+      descriptionSEO,
+      content[] {
+            ...,
+            page-> {
+                  "slug": slug.current
+            },
+            listText[]-> {
+                  _id,
+                  description
+            },
+            listBlog[]-> {
+                  title,
+                  _id,
+                  slug,
+                  description,
+                  mainImage,
+                  publishedAt,
+            },
+            listWorkTwo[]-> {
+                  btnText,
+                  description,
+                  title,
+                  image,
+                  link,
+                  _id,
+            }
+      }
+}
+`;

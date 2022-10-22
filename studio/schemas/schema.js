@@ -18,6 +18,11 @@ import blog from "./blog/blog";
 import blockContent from "./blog/blockContent";
 import blogList from "./sections/blogList";
 import cta from "./sections/cta";
+import textListItem from "./other/textListItem";
+import textList from "./sections/textList";
+import contact from "./sections/contact";
+import blogListTwo from "./sections/blogListTwo";
+import workListTwo from "./sections/workListTwo";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -41,6 +46,11 @@ export default createSchema({
     blog,
     blockContent,
     blogList,
+    textListItem,
+    textList,
     cta,
+    contact,
+    blogListTwo,
+    workListTwo,
   ]),
 });

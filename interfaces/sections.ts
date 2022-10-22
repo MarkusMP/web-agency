@@ -105,3 +105,75 @@ export interface ICta {
     slug: string;
   };
 }
+
+export interface ITextList {
+  _key: string;
+  _type: string;
+  description: string;
+  title: string;
+  listText: ITextListItem[];
+}
+
+export interface ITextListItem {
+  _id: string;
+  description: string;
+}
+
+export interface IContact {
+  title: string;
+  description: string;
+  email: string;
+  btnText: string;
+  _key: string;
+  _type: string;
+}
+
+export interface IBlogListTwo {
+  title: string;
+  _key: string;
+  _type: string;
+  listBlog: IBLogListTwoItem[];
+}
+
+export interface IBLogListTwoItem {
+  description: string;
+  mainImage: {
+    _type: string;
+    alt: string;
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
+  publishedAt: string;
+  slug: {
+    _type: string;
+    current: string;
+  };
+  title: string;
+  _id: string;
+}
+
+export interface IWorkListTwo {
+  title: string;
+  _key: string;
+  _type: string;
+  listWorkTwo: IListWorkTwoItem[];
+}
+
+export interface IListWorkTwoItem {
+  image: {
+    _type: string;
+    alt: string;
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
+  btnText: string;
+  description: string;
+  title: string;
+  link: string;
+  _id: string;
+  _type: string;
+}

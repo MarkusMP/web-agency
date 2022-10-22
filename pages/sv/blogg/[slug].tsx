@@ -31,7 +31,6 @@ export async function getStaticPaths(preview = false) {
   const allSlugsQuery = groq`*[defined(slug.current) && __i18n_lang == "sv-se"][].slug.current`;
   const pages = await getClient(preview).fetch(allSlugsQuery);
 
-  console.log(pages.filter((slug: any) => slug.includes("blogg/")));
   return {
     paths: pages
       .filter((slug: any) => slug.includes("blogg/"))

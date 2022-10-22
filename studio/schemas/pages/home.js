@@ -35,8 +35,12 @@ export default {
         { type: "feature" },
         { type: "servicesList" },
         { type: "workList" },
+        { type: "workListTwo" },
         { type: "blogList" },
+        { type: "blogListTwo" },
         { type: "cta" },
+        { type: "textList" },
+        { type: "contact" },
       ],
     },
     {

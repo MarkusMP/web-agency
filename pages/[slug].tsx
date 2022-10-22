@@ -2,7 +2,7 @@ import React from "react";
 import { groq } from "next-sanity";
 import { urlFor, usePreviewSubscription } from "../lib/sanity";
 import { getClient } from "../lib/sanity.server";
-import { QUERY_FOOTER, QUERY_HEADER, QUERY_HOME } from "../data";
+import { QUERY_FOOTER, QUERY_HEADER, QUERY_PAGE } from "../data";
 import Layout from "../components/Layout";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
@@ -40,9 +40,9 @@ export async function getStaticPaths(preview = false) {
 export async function getStaticProps({ params, preview = false }: any) {
   const client = await getClient(preview);
 
-  const query = QUERY_HOME;
+  const query = QUERY_PAGE;
   const queryParams = { language: "en-us" };
-  const data = await client.fetch(query, queryParams);
+  const data = await client.fetch(query, { ...queryParams, slug: params.slug });
 
   if (data.length === 0) {
     return { notFound: true };

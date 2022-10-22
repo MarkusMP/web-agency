@@ -4,3 +4,7 @@ export { default as ServicesList } from "./ServicesList";
 export { default as WorkList } from "./WorkList";
 export { default as BlogList } from "./BlogList";
 export { default as Cta } from "./Cta";
+export { default as TextList } from "./TextList";
+export { default as Contact } from "./Contact";
+export { default as BlogListTwo } from "./BlogListTwo";
+export { default as WorkListTwo } from "./WorkListTwo";
