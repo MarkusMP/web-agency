@@ -2,7 +2,7 @@ import React from "react";
 import { groq } from "next-sanity";
 import { urlFor, usePreviewSubscription } from "../../lib/sanity";
 import { getClient } from "../../lib/sanity.server";
-import { QUERY_FOOTER, QUERY_HEADER, QUERY_HOME } from "../../data";
+import { QUERY_BLOG, QUERY_FOOTER, QUERY_HEADER, QUERY_HOME } from "../../data";
 import Layout from "../../components/Layout";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
@@ -42,8 +42,8 @@ export async function getStaticPaths(preview = false) {
 export async function getStaticProps({ params, preview = false }: any) {
   const client = await getClient(preview);
 
-  const query = QUERY_HOME;
-  const queryParams = { language: "en-us" };
+  const query = QUERY_BLOG;
+  const queryParams = { language: "en-us", slug: `blog/${params.slug}` };
   const data = await client.fetch(query, queryParams);
 
   if (data.length === 0) {
@@ -142,14 +142,14 @@ export default function Page({ data, preview, header, footer }: any) {
         }}
       />
       <Layout header={header} footer={footer}>
-        {/* <section className="pt-[80px] container mx-auto px-5">
-          <div className="max-w-2xl mx-auto py-12">
+        <section className="pt-[80px] bg-black">
+          <div className="max-w-2xl mx-auto py-12 container px-6">
             <Link href={`/blogg`}>
-              <button className="px-4 py-2 mb-4 bg-primary hover:bg-secondary text-light rounded transition-all">
-                Gå tillbaka
+              <button className="px-4 py-2 mb-4 bg-white text-black rounded">
+                Go back
               </button>
             </Link>
-            <h1 className="text-3xl font-bold pb-4">
+            <h1 className="text-3xl font-bold pb-4 text-white">
               {page?.title && page.title}
             </h1>
 
@@ -167,7 +167,7 @@ export default function Page({ data, preview, header, footer }: any) {
               />
             )}
 
-            <div className="prose pt-4">
+            <div className="prose prose-invert pt-4 text-white">
               {page?.body && (
                 <PortableText
                   value={page?.body}
@@ -176,7 +176,7 @@ export default function Page({ data, preview, header, footer }: any) {
               )}
             </div>
           </div>
-        </section> */}
+        </section>
       </Layout>
     </>
   );

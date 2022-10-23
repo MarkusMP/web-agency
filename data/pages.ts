@@ -62,3 +62,17 @@ export const QUERY_PAGE = `
       }
 }
 `;
+
+export const QUERY_BLOG = `
+*[_type == "blog" && slug.current == $slug && __i18n_lang == $language] {
+      _id,
+      title,
+      ogImage,
+      mainImage,
+      publishedAt,
+      body,
+      "slug": slug.current,
+      titleSEO,
+      descriptionSEO,
+}
+`;
