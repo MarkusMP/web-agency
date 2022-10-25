@@ -177,3 +177,41 @@ export interface IListWorkTwoItem {
   _id: string;
   _type: string;
 }
+
+export interface ITextListTwo {
+  _key: string;
+  _type: string;
+  title: string;
+  listTextTwo: ITextListItemTwo[];
+}
+
+export interface ITextListItemTwo {
+  _id: string;
+  description: string;
+  title: string;
+}
+
+export interface ITextListThree {
+  _key: string;
+  _type: string;
+  listTextThree: ITextListItemThree[];
+}
+
+export interface ITextListItemThree {
+  _id: string;
+  description: string;
+}
+
+export interface IDropDown {
+  _key: string;
+  _type: string;
+  title: string;
+  listDropDown: IDropDownItem[];
+}
+
+export interface IDropDownItem {
+  description: string;
+  title: string;
+  _key: string;
+  _type: string;
+}

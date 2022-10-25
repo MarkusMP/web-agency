@@ -19,7 +19,8 @@ const Dropdown = ({ item, data, path }: any) => {
       document.removeEventListener("mousedown", handler);
     };
   }, []);
-
+  let swap = (arr: any, i: any, j: any) =>
+    data.map((e: any, k: any) => (k - i ? (k - j ? e : arr[i]) : arr[j]));
   return (
     <li className="px-0 lg:pl-6 relative mx-auto" ref={menuRef} key={item._id}>
       <button
@@ -39,7 +40,7 @@ const Dropdown = ({ item, data, path }: any) => {
         }
       >
         {data &&
-          data.map((item: any) => (
+          swap(data, 0, 2).map((item: any) => (
             <li className="py-2 md:py-1" key={item._id}>
               <Link href={!path ? item.page.slug : `/sv/${item.page.slug}`}>
                 <a className="transition uppercase duration-150 border-b-2 mt-[2] border-transparent hover:border-white blinker tracking-wider text-lg cursor-pointer">

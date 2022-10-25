@@ -43,6 +43,15 @@ export const QUERY_PAGE = `
                   _id,
                   description
             },
+            listTextTwo[]-> {
+                  _id,
+                  description,
+                  title,
+            },
+            listTextThree[]-> {
+                  _id,
+                  description,
+            },
             listBlog[]-> {
                   title,
                   _id,
@@ -59,6 +68,7 @@ export const QUERY_PAGE = `
                   link,
                   _id,
             }
+          
       }
 }
 `;

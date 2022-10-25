@@ -49,6 +49,7 @@ export default {
       title: "Page sections",
       of: [
         { type: "hero" },
+        { type: "heroTwo" },
         { type: "feature" },
         { type: "servicesList" },
         { type: "workList" },
@@ -57,7 +58,10 @@ export default {
         { type: "blogListTwo" },
         { type: "cta" },
         { type: "textList" },
+        { type: "textListTwo" },
+        { type: "textListThree" },
         { type: "contact" },
+        { type: "dropDown" },
       ],
     },
     {

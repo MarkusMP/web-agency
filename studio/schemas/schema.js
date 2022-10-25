@@ -23,6 +23,12 @@ import textList from "./sections/textList";
 import contact from "./sections/contact";
 import blogListTwo from "./sections/blogListTwo";
 import workListTwo from "./sections/workListTwo";
+import textListTwo from "./sections/textListTwo";
+import TextListItemTwo from "./other/TextListItemTwo";
+import HeroTwo from "./sections/HeroTwo";
+import dropDown from "./sections/dropDown";
+import dropDownItem from "./sections/dropDownItem";
+import TextListThree from "./sections/TextListThree";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -52,5 +58,11 @@ export default createSchema({
     contact,
     blogListTwo,
     workListTwo,
+    textListTwo,
+    TextListItemTwo,
+    HeroTwo,
+    dropDown,
+    dropDownItem,
+    TextListThree,
   ]),
 });

@@ -33,7 +33,9 @@ const Contact = ({
                 onChange={(e) => setName(e.target.value)}
                 type="text"
                 name="namne"
-                placeholder="Namn *"
+                placeholder={
+                  router.pathname.startsWith("/sv") ? `Namn *` : `Name *`
+                }
                 required
               />
               <input
@@ -50,7 +52,9 @@ const Contact = ({
               className="w-full placeholder-white bg-black border-b-2 border-white text-white mt-2 p-3 focus:outline-none focus:shadow-outline"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Meddelande *"
+              placeholder={
+                router.pathname.startsWith("/sv") ? `Meddelande *` : `Message *`
+              }
               required
             ></textarea>
             <button className="text-md mt-4 mx-auto tracking-wide text-white focus:outline-none focus:shadow-outline transition duration-150 border-b-2 mt-[2] border-transparent hover:border-white">

@@ -8,3 +8,7 @@ export { default as TextList } from "./TextList";
 export { default as Contact } from "./Contact";
 export { default as BlogListTwo } from "./BlogListTwo";
 export { default as WorkListTwo } from "./WorkListTwo";
+export { default as HeroTwo } from "./HeroTwo";
+export { default as TextListTwo } from "./TextListTwo";
+export { default as TextListThree } from "./TextListThree";
+export { default as DropDown } from "./DropDown";

@@ -1,7 +1,7 @@
 export default {
   name: "textList",
   type: "document",
-  title: "Text List Section",
+  title: "Text List",
   fields: [
     {
       name: "title",
