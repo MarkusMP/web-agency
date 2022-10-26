@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: WEBBTOPIA.COM
+
+# Sitemaps
+Sitemap: WEBBTOPIA.COM/sitemap.xml
