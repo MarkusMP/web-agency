@@ -1,8 +1,7 @@
 import React from "react";
-// import { IoDocumentsOutline } from "react-icons/io5";
 import SlugInput from "sanity-plugin-better-slug";
-// import { MediaEditor } from "sanity-plugin-asset-source-ogimage";
-// import { blogPostTwitterLayout } from "../../parts/BlogPostTwitterLayout";
+import { MediaEditor } from "sanity-plugin-asset-source-ogimage";
+import { blogPostTwitterLayout } from "../../parts/BlogPostTwitterLayout";
 import { IoDocumentTextOutline } from "react-icons/io5";
 
 export default {
@@ -89,32 +88,32 @@ export default {
         isHighlighted: true,
       },
     },
-    // {
-    //   name: "ogImage",
-    //   title: "Social sharing image",
-    //   type: "image",
-    //   fieldset: "seo",
-    //   options: {
-    //     sources: [
-    //       {
-    //         name: "sharing-image",
-    //         title: "Generate sharing image",
-    //         component: (props) => (
-    //           <MediaEditor
-    //             // It's vital to forward props to MediaEditor
-    //             {...props}
-    //             // Our custom layouts
-    //             layouts={[blogPostTwitterLayout]}
-    //             // See dialog section below
-    //             dialog={{
-    //               title: "Create sharing image",
-    //             }}
-    //           />
-    //         ),
-    //         icon: () => <div>🎨</div>,
-    //       },
-    //     ],
-    //   },
-    // },
+    {
+      name: "ogImage",
+      title: "Social sharing image",
+      type: "image",
+      fieldset: "seo",
+      options: {
+        sources: [
+          {
+            name: "sharing-image",
+            title: "Generate sharing image",
+            component: (props) => (
+              <MediaEditor
+                // It's vital to forward props to MediaEditor
+                {...props}
+                // Our custom layouts
+                layouts={[blogPostTwitterLayout]}
+                // See dialog section below
+                dialog={{
+                  title: "Create sharing image",
+                }}
+              />
+            ),
+            icon: () => <div>🎨</div>,
+          },
+        ],
+      },
+    },
   ],
 };

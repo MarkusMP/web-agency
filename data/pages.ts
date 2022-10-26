@@ -1,8 +1,9 @@
 export const QUERY_HOME = `
 *[_type == "home" && __i18n_lang == $language] {
-titleSEO,
-descriptionSEO,
-content[] {
+      titleSEO,
+      descriptionSEO,
+      ogImage,
+      content[] {
       ...,
             page-> {
             "slug": slug.current
@@ -22,7 +23,7 @@ content[] {
                   link,
                   _id
             },
-            listBlog[]-> {
+                  listBlog[]-> {
                   title,
                   _id,
                   slug
@@ -34,6 +35,7 @@ export const QUERY_PAGE = `
 *[_type == "pages" && slug.current == $slug && __i18n_lang == $language] {
       titleSEO,
       descriptionSEO,
+      ogImage,
       content[] {
             ...,
             page-> {

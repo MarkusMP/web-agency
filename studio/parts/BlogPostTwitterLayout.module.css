@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap");
+
+.root {
+  background: rgb(134, 25, 143);
+  background: linear-gradient(
+    153deg,
+    rgba(134, 25, 143, 1) 0%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(7, 89, 133, 1) 100%
+  );
+  font-family: "Blinker", sans-serif !important;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+}
+
+.bg {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  padding-left: 36px;
+  padding-right: 36px;
+}
+
+.nav {
+  border-bottom: 1px solid #fff;
+  text-align: center;
+  padding-top: 6px;
+}
+
+.nav h1 {
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.body {
+  text-align: center;
+  color: #fff;
+  overflow-wrap: break-word;
+}
+
+.body h1 {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  font-size: 6rem;
+}
