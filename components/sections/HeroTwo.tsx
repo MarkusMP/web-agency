@@ -3,8 +3,8 @@ import { IHero } from "../../interfaces";
 
 const HeroTwo = ({ title, description }: IHero) => {
   return (
-    <section className="h-[60vh] bg-gradient-to-br from-fuchsia-800 via-black to-sky-800">
-      <div className="bg-black bg-opacity-50 h-full overflow-hidden py-[80px]">
+    <section className="h-[70vh] bg-gradient-to-br from-fuchsia-800 via-black to-sky-800">
+      <div className="bg-black bg-opacity-50 h-full overflow-hidden pt-[80px]">
         <div className="h-full px-6 xl:mx-auto xl:container">
           <div className="w-full flex justify-center items-center h-full slide ">
             <div className="text-white text-center hero py-14 max-w-lg w-full">

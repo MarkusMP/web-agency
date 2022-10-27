@@ -1,12 +1,18 @@
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
+import useWindowDimensions from "../hooks/useWindowsDimensions";
 
 const Dropdown = ({ item, data, path }: any) => {
   const [openDropwdown, setOpenDropdown] = useState(false);
   const menuRef = useRef(null);
+  const { width }: any = useWindowDimensions();
 
   useEffect(() => {
+    if (width < 1024) {
+      setOpenDropdown(false);
+    }
+
     const handler = (e: any) => {
       // @ts-ignore: Unreachable code error
       if (!menuRef.current.contains(e.target)) {
@@ -18,7 +24,7 @@ const Dropdown = ({ item, data, path }: any) => {
     return () => {
       document.removeEventListener("mousedown", handler);
     };
-  }, []);
+  }, [width]);
   let swap = (arr: any, i: any, j: any) =>
     data.map((e: any, k: any) => (k - i ? (k - j ? e : arr[i]) : arr[j]));
   return (

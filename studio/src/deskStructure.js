@@ -54,7 +54,7 @@ export default () =>
                     )
                     .child((id) =>
                       S.document()
-                        .schemaType("home")
+                        .schemaType("pages")
                         .documentId(id)
                         .views([
                           S.view.form(),
