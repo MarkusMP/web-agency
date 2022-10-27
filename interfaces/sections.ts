@@ -215,3 +215,10 @@ export interface IDropDownItem {
   _key: string;
   _type: string;
 }
+
+export interface INotFoundSection {
+  title: string;
+  description: string;
+  _key: string;
+  _type: string;
+}

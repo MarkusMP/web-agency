@@ -29,6 +29,8 @@ import HeroTwo from "./sections/HeroTwo";
 import dropDown from "./sections/dropDown";
 import dropDownItem from "./sections/dropDownItem";
 import TextListThree from "./sections/TextListThree";
+import notFound from "./pages/notFound";
+import notFoundSection from "./sections/notFoundSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -64,5 +66,7 @@ export default createSchema({
     dropDown,
     dropDownItem,
     TextListThree,
+    notFound,
+    notFoundSection,
   ]),
 });

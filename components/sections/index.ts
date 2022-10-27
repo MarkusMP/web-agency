@@ -12,3 +12,4 @@ export { default as HeroTwo } from "./HeroTwo";
 export { default as TextListTwo } from "./TextListTwo";
 export { default as TextListThree } from "./TextListThree";
 export { default as DropDown } from "./DropDown";
+export { default as NotFoundSection } from "./NotFoundSection";

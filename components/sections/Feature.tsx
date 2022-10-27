@@ -10,7 +10,7 @@ const Feature = ({ title, image, description, btnText, page }: IFeature) => {
   return (
     <section className="py-12 bg-black">
       <div className="xl:mx-auto xl:container px-6 flex flex-col md:flex-row justify-between">
-        <div className="w-full md:w-3/6 pb-4 md:pb-0">
+        <div className="w-full md:w-3/6 pb-4 md:pb-0 pr-0 md:pr-2">
           <div
             className="mx-auto"
             style={{

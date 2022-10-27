@@ -5,7 +5,7 @@ import { FaHome } from "react-icons/fa";
 import { BsLink45Deg } from "react-icons/bs";
 import Iframe from "sanity-plugin-iframe-pane";
 import resolveProductionUrl from "../resolveProductionUrl";
-import { BsBoxSeam } from "react-icons/bs";
+import { BsBoxSeam, BsExclamationCircle } from "react-icons/bs";
 import { MdWorkOutline } from "react-icons/md";
 
 export const getDefaultDocumentNode = () => {
@@ -119,6 +119,23 @@ export default () =>
                         ])
                     )
                 ),
+            ])
+        ),
+      S.listItem()
+        .title("404 Page")
+        .icon(BsExclamationCircle)
+        .child(
+          S.document()
+            .schemaType("notFound")
+            .documentId("notFound")
+            .views([
+              S.view.form(),
+              S.view
+                .component(Iframe)
+                .options({
+                  url: (doc) => resolveProductionUrl(doc),
+                })
+                .title("Preview"),
             ])
         ),
       S.listItem()
