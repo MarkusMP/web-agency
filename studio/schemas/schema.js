@@ -31,6 +31,7 @@ import dropDownItem from "./sections/dropDownItem";
 import TextListThree from "./sections/TextListThree";
 import notFound from "./pages/notFound";
 import notFoundSection from "./sections/notFoundSection";
+import settings from "./settings";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -68,5 +69,6 @@ export default createSchema({
     TextListThree,
     notFound,
     notFoundSection,
+    settings,
   ]),
 });

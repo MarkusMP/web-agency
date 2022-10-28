@@ -1,7 +1,7 @@
 import S from "@sanity/desk-tool/structure-builder";
 import { RiLayoutBottom2Line, RiLayoutTop2Line } from "react-icons/ri";
 import { IoDocumentsOutline, IoDocumentTextOutline } from "react-icons/io5";
-import { FaHome } from "react-icons/fa";
+import { FaCog, FaHome } from "react-icons/fa";
 import { BsLink45Deg } from "react-icons/bs";
 import Iframe from "sanity-plugin-iframe-pane";
 import resolveProductionUrl from "../resolveProductionUrl";
@@ -338,4 +338,8 @@ export default () =>
             .filter('_type == "footer"')
             .canHandleIntent(S.documentTypeList("footer").getCanHandleIntent())
         ),
+      S.listItem()
+        .title("Site Settings")
+        .icon(FaCog)
+        .child(S.document().schemaType("settings").documentId("settings")),
     ]);

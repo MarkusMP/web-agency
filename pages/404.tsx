@@ -78,7 +78,6 @@ const NotFound: NextPage = ({
       <NextSeo
         title={page?.titleSEO}
         description={page?.descriptionSEO}
-        canonical={`${settings?.url}/`}
         openGraph={{
           url: `${settings?.url}/`,
           title: page?.titleSEO,

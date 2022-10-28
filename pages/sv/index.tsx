@@ -3,7 +3,12 @@ import { getClient } from "../../lib/sanity.server";
 import { NextSeo } from "next-seo";
 import Layout from "../../components/Layout";
 import { urlFor, usePreviewSubscription } from "../../lib/sanity";
-import { QUERY_FOOTER, QUERY_HEADER, QUERY_HOME } from "../../data";
+import {
+  QUERY_FOOTER,
+  QUERY_HEADER,
+  QUERY_HOME,
+  QUERY_SETTINGS,
+} from "../../data";
 import RenderSections from "../../components/RenderSections";
 
 function filterDataToSingleItem(data: any, preview: any) {
@@ -34,10 +39,11 @@ export async function getStaticProps({ params, preview = false }: any) {
   if (data.length === 0) {
     return { notFound: true };
   } else {
-    const { header, footer }: any = await client.fetch(
+    const { header, footer, settings }: any = await client.fetch(
       `{
       "header": ${QUERY_HEADER},
       "footer": ${QUERY_FOOTER},
+      "settings": ${QUERY_SETTINGS},
     }`,
       queryParams
     );
@@ -49,6 +55,7 @@ export async function getStaticProps({ params, preview = false }: any) {
         preview,
         header,
         footer,
+        settings,
         data: { page, query, queryParams },
       },
       revalidate: 60,
@@ -71,9 +78,9 @@ const Home: NextPage = ({ data, preview, header, settings, footer }: any) => {
       <NextSeo
         title={page?.titleSEO}
         description={page?.descriptionSEO}
-        canonical={`${settings?.url}/`}
+        canonical={`${settings?.url}/sv`}
         openGraph={{
-          url: `${settings?.url}/`,
+          url: `${settings?.url}/sv`,
           title: page?.titleSEO,
           description: page?.descriptionSEO,
           images: [

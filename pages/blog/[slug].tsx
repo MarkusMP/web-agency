@@ -2,7 +2,13 @@ import React from "react";
 import { groq } from "next-sanity";
 import { urlFor, usePreviewSubscription } from "../../lib/sanity";
 import { getClient } from "../../lib/sanity.server";
-import { QUERY_BLOG, QUERY_FOOTER, QUERY_HEADER, QUERY_HOME } from "../../data";
+import {
+  QUERY_BLOG,
+  QUERY_FOOTER,
+  QUERY_HEADER,
+  QUERY_HOME,
+  QUERY_SETTINGS,
+} from "../../data";
 import Layout from "../../components/Layout";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
@@ -49,10 +55,12 @@ export async function getStaticProps({ params, preview = false }: any) {
   if (data.length === 0) {
     return { notFound: true };
   } else if (data.length > 0) {
-    const { header, footer }: any = await client.fetch(
+    const { header, footer, settings }: any = await client.fetch(
       `{
           "header": ${QUERY_HEADER},
-          "footer": ${QUERY_FOOTER}
+          "footer": ${QUERY_FOOTER},
+      "settings": ${QUERY_SETTINGS},
+          
         }`,
       queryParams
     );
@@ -66,7 +74,7 @@ export async function getStaticProps({ params, preview = false }: any) {
         preview,
         header,
         footer,
-
+        settings,
         // Pass down the initial content, and our query
         data: { page, query, queryParams },
       },
@@ -75,7 +83,7 @@ export async function getStaticProps({ params, preview = false }: any) {
   }
 }
 
-export default function Page({ data, preview, header, footer }: any) {
+export default function Page({ data, preview, header, footer, settings }: any) {
   const { data: previewData } = usePreviewSubscription(data?.query, {
     params: data?.queryParams ?? {},
     // The hook will return this on first render
@@ -126,9 +134,9 @@ export default function Page({ data, preview, header, footer }: any) {
       <NextSeo
         title={page?.titleSEO}
         description={page?.descriptionSEO}
-        // canonical={`${settings?.url}/${page.slug}`}
+        canonical={`${settings?.url}/${page.slug}`}
         openGraph={{
-          //   url: `${settings?.url}/`,
+          url: `${settings?.url}/${page.slug}`,
           title: page?.titleSEO,
           description: page?.descriptionSEO,
           images: [

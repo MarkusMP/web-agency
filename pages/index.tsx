@@ -3,7 +3,12 @@ import { getClient } from "../lib/sanity.server";
 import { NextSeo } from "next-seo";
 import Layout from "../components/Layout";
 import { urlFor, usePreviewSubscription } from "../lib/sanity";
-import { QUERY_FOOTER, QUERY_HEADER, QUERY_HOME } from "../data";
+import {
+  QUERY_FOOTER,
+  QUERY_HEADER,
+  QUERY_HOME,
+  QUERY_SETTINGS,
+} from "../data";
 import RenderSections from "../components/RenderSections";
 
 function filterDataToSingleItem(data: any, preview: any) {
@@ -36,10 +41,11 @@ export async function getStaticProps({ params, preview = false }: any) {
   if (data.length === 0) {
     return { notFound: true };
   } else {
-    const { header, footer }: any = await client.fetch(
+    const { header, footer, settings }: any = await client.fetch(
       `{
       "header": ${QUERY_HEADER},
-      "footer": ${QUERY_FOOTER}
+      "footer": ${QUERY_FOOTER},
+      "settings": ${QUERY_SETTINGS},
     }`,
       queryParams
     );
@@ -49,7 +55,7 @@ export async function getStaticProps({ params, preview = false }: any) {
     return {
       props: {
         preview,
-        // settings,
+        settings,
         header,
         footer,
         data: { page, query, queryParams },

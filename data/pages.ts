@@ -36,6 +36,7 @@ export const QUERY_PAGE = `
       titleSEO,
       descriptionSEO,
       ogImage,
+      slug,
       content[] {
             ...,
             page-> {
