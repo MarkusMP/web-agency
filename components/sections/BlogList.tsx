@@ -44,7 +44,14 @@ const BlogList = ({
                       : `/${item.slug.current}`
                   }
                 >
-                  <a className="transition text-grey duration-150 border-b-2 mt-[2] border-transparent hover:border-white cursor-pointer4">
+                  <a
+                    aria-label={
+                      router.pathname.startsWith("/sv")
+                        ? `Läs mer om ${item.title && item.title}`
+                        : `Read more about ${item.title && item.title}`
+                    }
+                    className="transition text-grey duration-150 border-b-2 mt-[2] border-transparent hover:border-white cursor-pointer4"
+                  >
                     {listLinkTitle && listLinkTitle}
                   </a>
                 </Link>

@@ -30,7 +30,6 @@ export interface IServicesList {
 }
 
 export interface IServiceListItem {
-  btnText: string;
   description: string;
   title: string;
   _id: string;

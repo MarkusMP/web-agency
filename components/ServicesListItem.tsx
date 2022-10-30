@@ -33,21 +33,20 @@ const ServicesListItem = ({ data }: Props) => {
             layout="responsive"
           />
         </div>
-        <h3 className="text-xl py-2 font-semibold">
-          {data?.title && data?.title}
-        </h3>
-        <p className="pb-8">{data?.description && data?.description}</p>
-        <Link
-          href={
-            router.pathname.startsWith("/sv")
-              ? `/sv/${data?.page.slug}`
-              : `/${data?.page.slug}`
-          }
-        >
-          <a className="transition absolute bottom-0 left-0 right-0 w-fit mx-auto uppercase duration-150 border-b-2 mt-[2] border-transparent hover:border-white text-lg cursor-pointer">
-            {data?.btnText && data?.btnText}
-          </a>
-        </Link>
+        <div className="py-2">
+          <Link
+            href={
+              router.pathname.startsWith("/sv")
+                ? `/sv/${data?.page.slug}`
+                : `/${data?.page.slug}`
+            }
+          >
+            <a className="text-xl text-white transition w-fit mx-auto uppercase duration-150 border-b-2 border-transparent hover:border-white">
+              {data?.title && data?.title}
+            </a>
+          </Link>
+        </div>
+        <p>{data?.description && data?.description}</p>
       </div>
     </div>
   );
