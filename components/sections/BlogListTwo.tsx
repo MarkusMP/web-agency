@@ -44,7 +44,15 @@ const BlogListTwo = ({ title, listBlog }: IBlogListTwo) => {
                   <div className="p-6">
                     <div className="flex justify-between items-center text-p">
                       <span className="text-sm">
-                        <Moment locale="sv" fromNow>
+                        {router.pathname.startsWith("/sv")
+                          ? `Publicerades `
+                          : `Published `}
+                        <Moment
+                          locale={
+                            router.pathname.startsWith("/sv") ? `sv` : `en`
+                          }
+                          fromNow
+                        >
                           {item.publishedAt}
                         </Moment>
                       </span>

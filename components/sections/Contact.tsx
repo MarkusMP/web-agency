@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { IContact } from "../../interfaces";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Contact = ({
   title,
@@ -12,6 +14,31 @@ const Contact = ({
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const router = useRouter();
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    fetch("http://localhost:3000/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, message }),
+    })
+      .then(() => {
+        toast.success(
+          router.pathname.startsWith("/sv")
+            ? `E-postmeddelandet har skickats!`
+            : `Email sent successfully`
+        );
+      })
+      .catch(() => {
+        toast.error(
+          router.pathname.startsWith("/sv")
+            ? `Det gick inte att skicka e-post.`
+            : `Error sending email`
+        );
+      });
+  };
 
   return (
     <section className="pt-[80px] bg-black min-h-screen h-full flex items-center justify-center">
@@ -25,7 +52,7 @@ const Contact = ({
               {description && description}
             </p>
           </div>
-          <form className="max-w-3xl mx-auto">
+          <form className="max-w-3xl mx-auto" onSubmit={handleSubmit}>
             <div className="flex pb-4">
               <input
                 className="w-full placeholder-white bg-black mr-4 border-b-2 border-white text-white mt-2 p-3 focus:outline-none focus:shadow-outline"
@@ -57,12 +84,16 @@ const Contact = ({
               }
               required
             ></textarea>
-            <button className="text-md mt-4 mx-auto tracking-wide text-white focus:outline-none focus:shadow-outline transition duration-150 border-b-2 mt-[2] border-transparent hover:border-white">
+            <button
+              type="submit"
+              className="text-md mt-4 mx-auto tracking-wide text-white focus:outline-none focus:shadow-outline transition duration-150 border-b-2 mt-[2] border-transparent hover:border-white"
+            >
               {btnText && btnText}
             </button>
           </form>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };

@@ -26,6 +26,12 @@ const Footer = ({ data }: Props) => {
               {data?.logo && data.logo}
             </span>
           </Link>
+          {data?.email && (
+            <p className="pt-2 text-grey">
+              <strong>Email: </strong>
+              <a href={`mailto:${data.email}`}>{data.email}</a>
+            </p>
+          )}
           <div className="mt-auto flex py-4">
             {data?.social &&
               data.social.map((item: any) => (
@@ -83,7 +89,7 @@ const Footer = ({ data }: Props) => {
                     <Link
                       href={item.page && item.page.slug ? item.page.slug : "/"}
                     >
-                      <a className="transition uppercase duration-150 border-b-2 mt-[2] border-transparent hover:border-white blinker tracking-wider cursor-pointer break-all">
+                      <a className="transition uppercase duration-150 border-b-2 mt-[2] border-transparent hover:border-white blinker tracking-wider cursor-pointer break-words w-full inline-block">
                         {item?.title && item.title}
                       </a>
                     </Link>

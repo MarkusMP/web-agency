@@ -28,6 +28,7 @@ export interface IFooter {
   services: string;
   social: IFooterSocial[];
   menu: IFooterMenu[];
+  email: string;
   linksList: IFooterLinksList[];
 }
 

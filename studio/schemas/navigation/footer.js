@@ -48,6 +48,11 @@ export default {
       of: [{ type: "reference", to: { type: "links" } }],
     },
     {
+      title: "Email",
+      name: "email",
+      type: "string",
+    },
+    {
       name: "social",
       type: "array",
       title: "Social Links",
