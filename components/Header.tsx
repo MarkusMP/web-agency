@@ -41,7 +41,7 @@ const Header = ({ data }: Props) => {
     };
     document.addEventListener("mousedown", handler);
     window.addEventListener("scroll", changeBackground);
-    if (open && width < 1024) {
+    if (open) {
       setNavbar(true);
     } else {
       setNavbar(false);

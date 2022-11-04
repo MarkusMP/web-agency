@@ -41,13 +41,13 @@ const Dropdown = ({ item, data, path }: any) => {
       <ul
         className={
           openDropwdown
-            ? "relative md:absolute px-0 bg-black rounded md:px-4 py-0 md:py-2 w-64 md:mt-3 text-center md:text-left"
-            : "relative md:absolute px-0 bg-black rounded md:px-4 py-0 md:py-2 hidden text-center md:text-left"
+            ? "relative lg:absolute px-0 bg-black rounded lg:px-4 py-0 lg:py-2 w-64 lg:mt-3 text-center lg:text-left"
+            : "relative lg:absolute px-0 bg-black rounded lg:px-4 py-0 lg:py-2 hidden text-center lg:text-left"
         }
       >
         {data &&
           swap(data, 0, 2).map((item: any) => (
-            <li className="py-2 md:py-1" key={item._id}>
+            <li className="py-2 lg:py-1" key={item._id}>
               <Link href={!path ? item.page.slug : `/sv/${item.page.slug}`}>
                 <a className="transition uppercase duration-150 border-b-2 mt-[2] border-transparent hover:border-white blinker tracking-wider text-lg cursor-pointer">
                   {item.title && item.title}
