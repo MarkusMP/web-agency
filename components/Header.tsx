@@ -12,12 +12,10 @@ type Props = {
 const Header = ({ data }: Props) => {
   const [open, setOpen] = useState(false);
   const [path, setPath] = useState(true);
-  const [navbar, setNavbar] = useState(false);
+  const [navbar, setNavbar] = useState(true);
   const btnRef = useRef();
   const menuRef = useRef(null);
   const router = useRouter();
-
-  const { width }: any = useWindowDimensions();
 
   const changeBackground = () => {
     if (window.scrollY >= 80) {
@@ -39,19 +37,19 @@ const Header = ({ data }: Props) => {
         setOpen(false);
       }
     };
-    document.addEventListener("mousedown", handler);
-    window.addEventListener("scroll", changeBackground);
     if (open) {
       setNavbar(true);
     } else {
       setNavbar(false);
     }
 
+    document.addEventListener("mousedown", handler);
+    window.addEventListener("scroll", changeBackground);
     return () => {
       document.removeEventListener("mousedown", handler);
       window.removeEventListener("scroll", changeBackground);
     };
-  }, [router, width, open]);
+  }, [router, open]);
 
   return (
     <header>
