@@ -2,7 +2,7 @@
 const previewSecret = "0936d352-e64f-486c-4322-503bfabt4773d";
 
 // Replace `remoteUrl` with your deployed Next.js site
-const remoteUrl = `https://web-agency-beta.vercel.app`;
+const remoteUrl = `https://webbtopia.com`;
 const localUrl = `http://localhost:3000`;
 
 export default function resolveProductionUrl(doc) {
