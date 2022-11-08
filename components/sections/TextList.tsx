@@ -6,7 +6,7 @@ const TextList = ({ description, title, listText }: ITextList) => {
     <section className="pt-[80px] bg-black">
       <div className="mx-auto py-12 px-6 container">
         <h1 className="text-3xl text-center text-white">{title && title}</h1>
-        <div className="border-[1px] border-white py-6 px-4 mt-8 max-w-3xl w-full mx-auto">
+        <div className="border-[1px] border-white py-6 px-4 my-8 max-w-3xl w-full mx-auto">
           <p className="mx-auto w-full text-white">
             {description && description}
           </p>
@@ -16,7 +16,7 @@ const TextList = ({ description, title, listText }: ITextList) => {
             listText.map((item) => (
               <div
                 key={item._id}
-                className="border-[1px] border-white py-4 px-4 mt-8 max-w-3xl w-full mx-auto"
+                className="border-[1px] border-white py-4 px-4 max-w-3xl w-full mx-auto"
               >
                 <p className="mx-auto w-full text-white">{item.description}</p>
               </div>

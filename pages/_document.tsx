@@ -19,10 +19,11 @@ class MyDocument extends Document {
 
   render(): JSX.Element {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
           <Favicon />
+
           {isProduction && (
             <>
               <script

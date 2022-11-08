@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: webbtopia.com
+Host: https://webbtopia.com
 
 # Sitemaps
-Sitemap: webbtopia.com/sitemap.xml
+Sitemap: https://webbtopia.com/sitemap.xml

@@ -1,5 +1,5 @@
 import React from "react";
-import { ITextListItemThree, ITextListThree } from "../../interfaces";
+import { ITextListThree } from "../../interfaces";
 
 const TextListThree = ({ listTextThree }: ITextListThree) => {
   return (
