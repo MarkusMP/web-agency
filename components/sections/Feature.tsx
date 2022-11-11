@@ -10,13 +10,13 @@ const Feature = ({ title, image, description, btnText, page }: IFeature) => {
   return (
     <section className="py-12 bg-black">
       <div className="xl:mx-auto xl:container px-6 flex flex-col md:flex-row justify-between">
-        <div className="w-full md:w-3/6 pb-4 md:pb-0 pr-0 md:pr-2">
+        <div className="w-full md:w-3/6 pb-4 md:pb-0 pr-0 md:pr-6">
           <div
             className="mx-auto"
             style={{
               height: "auto",
-              maxHeight: 500,
-              maxWidth: 500,
+              maxHeight: 350,
+              maxWidth: 350,
               width: "auto",
               position: "relative",
             }}
@@ -30,7 +30,7 @@ const Feature = ({ title, image, description, btnText, page }: IFeature) => {
             />
           </div>
         </div>
-        <div className="text-white w-full md:w-3/6 text-center md:text-left">
+        <div className="text-white w-full md:w-3/6 text-center md:text-left md:pl-6">
           <h2 className="text-3xl pb-4">{title && title}</h2>
           <p className="pb-4">{description && description}</p>
           <div className="max-w-fit mx-auto flex flex-col group ">
