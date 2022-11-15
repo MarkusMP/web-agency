@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
-import useWindowDimensions from "../hooks/useWindowsDimensions";
 import { IHeader } from "../interfaces";
 import Dropdown from "./Dropdown";
 
@@ -114,6 +113,8 @@ const Header = ({ data }: Props) => {
                               ? !path
                                 ? item.page.slug
                                 : `/sv/${item.page.slug}`
+                              : router.pathname.startsWith("/sv")
+                              ? "/sv"
                               : "/"
                           }
                         >
