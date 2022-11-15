@@ -17,7 +17,7 @@ const Contact = ({
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    fetch("http://localhost:3000/api/contact", {
+    fetch("https://webbtopia.com/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
