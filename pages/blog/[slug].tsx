@@ -6,13 +6,11 @@ import {
   QUERY_BLOG,
   QUERY_FOOTER,
   QUERY_HEADER,
-  QUERY_HOME,
   QUERY_SETTINGS,
 } from "../../data";
 import Layout from "../../components/Layout";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import RenderSections from "../../components/RenderSections";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -152,7 +150,7 @@ export default function Page({ data, preview, header, footer, settings }: any) {
       <Layout header={header} footer={footer}>
         <section className="pt-[80px] bg-black">
           <div className="max-w-2xl mx-auto py-12 container px-6">
-            <Link href={`/blogg`}>
+            <Link href={`/blog`}>
               <button className="px-4 py-2 mb-4 bg-white text-black rounded">
                 Go back
               </button>

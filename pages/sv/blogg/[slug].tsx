@@ -149,7 +149,7 @@ export default function Page({ data, preview, header, footer, settings }: any) {
       <Layout header={header} footer={footer}>
         <section className="pt-[80px] bg-black">
           <div className="max-w-2xl mx-auto py-12 container px-6">
-            <Link href={`/blogg`}>
+            <Link href={`/sv/blogg`}>
               <button className="px-4 py-2 mb-4 bg-white text-black rounded">
                 Gå tillbaka
               </button>
