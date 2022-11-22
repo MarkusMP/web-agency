@@ -6,7 +6,7 @@ import { urlFor } from "../../lib/sanity";
 
 const WorkListTwo = ({ title, listWorkTwo }: IWorkListTwo) => {
   return (
-    <section className="bg-black pt-[80px] min-h-screen">
+    <section className="bg-black pt-[80px]">
       <div className="mx-auto container px-6 py-12">
         <div>
           <h1 className="text-white text-3xl text-center">{title && title}</h1>

@@ -100,7 +100,7 @@ const Footer = ({ data }: Props) => {
         </div>
       </div>
       <div className="text-center text-white py-4 xl:container mx-auto px-6">
-        <p>{data?.copyright && `2022 Copyright © ${data.copyright}.`}</p>
+        {/* <p>{data?.copyright && `2022 Copyright © ${data.copyright}.`}</p> */}
       </div>
     </footer>
   );

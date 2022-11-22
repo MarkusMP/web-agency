@@ -10,7 +10,7 @@ const Cta = ({ title, btnText, description, page }: ICta) => {
     <section className="py-12 bg-black">
       <div className="container mx-auto px-6">
         <div className="text-center border-2 border-white py-12 px-8 max-w-xl w-full mx-auto">
-          <h2 className="text-white text-xl pb-2">{title && title}</h2>
+          <h2 className="text-white text-xl pb-4">{title && title}</h2>
           <p className="max-w-md mx-auto w-full text-white">
             {description && description}
           </p>

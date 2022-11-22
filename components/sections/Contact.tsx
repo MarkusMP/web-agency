@@ -45,7 +45,7 @@ const Contact = ({
       <div className="mx-auto px-6 py-12 container">
         <div>
           <div className="pb-8">
-            <h1 className="text-3xl text-center text-white pb-2">
+            <h1 className="text-3xl text-center text-white pb-4">
               {title && title}
             </h1>
             <p className="text-lg text-center text-white">

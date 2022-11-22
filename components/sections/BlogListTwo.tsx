@@ -12,7 +12,7 @@ const BlogListTwo = ({ title, listBlog }: IBlogListTwo) => {
   const router = useRouter();
 
   return (
-    <section className="bg-black pt-[80px] min-h-screen">
+    <section className="bg-black pt-[80px]">
       <div className="px-6 container mx-auto py-12">
         <div>
           <h1 className="text-white text-3xl text-center">{title && title}</h1>
