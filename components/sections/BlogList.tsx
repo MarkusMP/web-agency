@@ -28,8 +28,8 @@ const BlogList = ({
                 <Link
                   href={
                     router.pathname.startsWith("/sv")
-                      ? `/${item.slug.current}`
-                      : `/${item.slug.current}`
+                      ? `/blog/${item.slug.current}`
+                      : `/blog/${item.slug.current}`
                   }
                 >
                   <h3 className="text-lg text-white mt-2 mb-4 cursor-pointer max-w-fit">
@@ -40,8 +40,8 @@ const BlogList = ({
                 <Link
                   href={
                     router.pathname.startsWith("/sv")
-                      ? `/${item.slug.current}`
-                      : `/${item.slug.current}`
+                      ? `/blog/${item.slug.current}`
+                      : `/blog/${item.slug.current}`
                   }
                 >
                   <a

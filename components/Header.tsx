@@ -25,7 +25,7 @@ const Header = ({ data }: Props) => {
   };
 
   useEffect(() => {
-    if (router.pathname.startsWith("/sv")) {
+    if (router.locale === "en" ? false : true) {
       setPath(true);
     } else {
       setPath(false);
@@ -129,7 +129,7 @@ const Header = ({ data }: Props) => {
               <ul className="lg:ml-auto">
                 {path ? (
                   <li className="px-0 lg:pl-6 py-2 lg:py-0">
-                    <Link href={"/"}>
+                    <Link href={"/"} locale="en">
                       <a
                         className="blinker tracking-wider text-lg cursor-pointer"
                         aria-label={`Change language of the website to English`}
@@ -140,7 +140,7 @@ const Header = ({ data }: Props) => {
                   </li>
                 ) : (
                   <li className="px-0 lg:pl-6 py-2 lg:py-0">
-                    <Link href={"/sv"}>
+                    <Link href={"/sv"} locale="sv">
                       <a
                         className="blinker tracking-wider text-lg cursor-pointer"
                         aria-label={`Change language of the website to Swedish`}

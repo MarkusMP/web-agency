@@ -7,6 +7,10 @@ const nextConfig = {
     domains: ["cdn.sanity.io"],
     dangerouslyAllowSVG: true,
   },
+  i18n: {
+    locales: ["en", "sv"],
+    defaultLocale: "en",
+  },
 };
 
 module.exports = nextConfig;

@@ -31,23 +31,38 @@ function filterDataToSingleItem(data: any, preview: any) {
   return data[0];
 }
 
-export async function getStaticPaths(preview = false) {
-  const allSlugsQuery = groq`*[defined(slug.current) && __i18n_lang == "en-us"][].slug.current`;
+export async function getStaticPaths({ preview = false, locales }: any) {
+  const allSlugsQuery = groq`*[defined(slug.current) && _type == "blog"] {
+    "slug": slug.current,
+    __i18n_lang
+  }`;
   const pages = await getClient(preview).fetch(allSlugsQuery);
 
+  const paths = [] as any;
+  pages.map((el: any) => {
+    return locales.map((locale: any) => {
+      if (el.__i18n_lang === "sv-se" && locale === "sv") {
+        return paths.push({ params: { slug: `${el.slug}` }, locale });
+      } else if (el.__i18n_lang === "en-us" && locale === "en") {
+        return paths.push({ params: { slug: `${el.slug}` }, locale });
+      }
+    });
+  });
+
   return {
-    paths: pages
-      .filter((slug: any) => slug.includes("blog/"))
-      .map((slug: any) => `/${slug}`),
+    paths,
     fallback: "blocking",
   };
 }
 
-export async function getStaticProps({ params, preview = false }: any) {
+export async function getStaticProps({ params, preview = false, locale }: any) {
   const client = await getClient(preview);
 
   const query = QUERY_BLOG;
-  const queryParams = { language: "en-us", slug: `blog/${params.slug}` };
+  const queryParams = {
+    language: locale === "en" ? "en-us" : "sv-se",
+    slug: `${params.slug}`,
+  };
   const data = await client.fetch(query, queryParams);
 
   if (data.length === 0) {
@@ -57,8 +72,7 @@ export async function getStaticProps({ params, preview = false }: any) {
       `{
           "header": ${QUERY_HEADER},
           "footer": ${QUERY_FOOTER},
-      "settings": ${QUERY_SETTINGS},
-          
+          "settings": ${QUERY_SETTINGS},
         }`,
       queryParams
     );
@@ -152,7 +166,7 @@ export default function Page({ data, preview, header, footer, settings }: any) {
           <div className="max-w-2xl mx-auto py-12 container px-6">
             <Link href={`/blog`}>
               <button className="px-4 py-2 mb-4 bg-white text-black rounded">
-                Go back
+                {router.locale === "en" ? "Go back" : "Gå Tillbaka"}
               </button>
             </Link>
             <h1 className="text-3xl font-bold pb-4 text-white">

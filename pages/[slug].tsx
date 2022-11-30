@@ -29,25 +29,38 @@ function filterDataToSingleItem(data: any, preview: any) {
   return data[0];
 }
 
-export async function getStaticPaths(preview = false) {
-  const allSlugsQueryEn = groq`*[defined(slug.current) && __i18n_lang == "en-us"][].slug.current `;
+export async function getStaticPaths({ preview = false, locales }: any) {
+  const allSlugsQueryEn = groq`*[defined(slug.current) && _type == "pages"] {
+    "slug": slug.current,
+    __i18n_lang
+  }`;
   const pages = await getClient(preview).fetch(allSlugsQueryEn);
 
-  return {
-    paths: pages
-      .filter((slug: any) => !slug.includes("blog/"))
-      .filter((slug: any) => !slug.includes("#"))
-      .map((slug: any) => `/${slug}`),
+  const paths = [] as any;
 
+  pages
+    .filter((item: any) => item.slug !== "#")
+    .map((el: any) => {
+      return locales.map((locale: any) => {
+        if (el.__i18n_lang === "sv-se" && locale === "sv") {
+          return paths.push({ params: { slug: `${el.slug}` }, locale });
+        } else if (el.__i18n_lang === "en-us" && locale === "en") {
+          return paths.push({ params: { slug: `${el.slug}` }, locale });
+        }
+      });
+    });
+
+  return {
+    paths,
     fallback: "blocking",
   };
 }
 
-export async function getStaticProps({ params, preview = false }: any) {
+export async function getStaticProps({ params, preview = false, locale }: any) {
   const client = await getClient(preview);
 
   const query = QUERY_PAGE;
-  const queryParams = { language: "en-us" };
+  const queryParams = { language: locale === "en" ? "en-us" : "sv-se" };
   const data = await client.fetch(query, { ...queryParams, slug: params.slug });
 
   if (data.length === 0) {

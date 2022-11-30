@@ -23,18 +23,20 @@ function filterDataToSingleItem(data: any, preview: any) {
   return data[0];
 }
 
-export async function getStaticProps({ params, preview = false }: any) {
+export async function getStaticProps({ params, preview = false, locale }: any) {
   const client = await getClient(preview);
 
-  const query = groq`*[_type == "notFound" && _id == $id]`;
-  const queryParams = { id: "notFound" };
+  const query = groq`*[_type == "notFound" && __i18n_lang == $language]`;
+  const queryParams = {
+    language: locale === "en" ? "en-us" : "sv-se",
+  };
   const data = await client.fetch(query, queryParams);
   const { header, footer }: any = await client.fetch(
     `{
     "header": ${QUERY_HEADER},
     "footer": ${QUERY_FOOTER},
   }`,
-    { language: "en-us" }
+    { language: locale === "en" ? "en-us" : "sv-se" }
   );
 
   // Helper function to reduce all returned documents down to just one

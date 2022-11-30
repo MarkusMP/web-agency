@@ -123,19 +123,88 @@ export default () =>
         ),
       S.listItem()
         .title("404 Page")
-        .icon(BsExclamationCircle)
+        .icon(IoDocumentsOutline)
         .child(
-          S.document()
-            .schemaType("notFound")
-            .documentId("notFound")
-            .views([
-              S.view.form(),
-              S.view
-                .component(Iframe)
-                .options({
-                  url: (doc) => resolveProductionUrl(doc),
-                })
-                .title("Preview"),
+          S.list()
+            .title("404 Page languages filter")
+            .items([
+              S.listItem()
+                .title("All 404 Pages")
+                .child(
+                  S.documentList()
+                    .title(`404 page documents`)
+                    .schemaType("notFound")
+                    .filter('_type == "notFound"')
+                    .canHandleIntent(
+                      S.documentTypeList("notFound").getCanHandleIntent()
+                    )
+                    .child((id) =>
+                      S.document()
+                        .schemaType("notFound")
+                        .documentId(id)
+                        .views([
+                          S.view.form(),
+                          S.view
+                            .component(Iframe)
+                            .options({
+                              url: (doc) => resolveProductionUrl(doc),
+                            })
+                            .title("Preview"),
+                        ])
+                    )
+                ),
+              S.listItem()
+                .title("404 page in English")
+                .child(
+                  S.documentList()
+                    .title(`404 page documents`)
+                    .schemaType("notFound")
+                    .filter('_type == "notFound" && __i18n_lang == "en-us"')
+                    .params({ baseLanguage: `en_US` })
+                    .canHandleIntent(
+                      S.documentTypeList("notFound").getCanHandleIntent()
+                    )
+                    .child((id) =>
+                      S.document()
+                        .schemaType("notFound")
+                        .documentId(id)
+                        .views([
+                          S.view.form(),
+                          S.view
+                            .component(Iframe)
+                            .options({
+                              url: (doc) => resolveProductionUrl(doc),
+                            })
+                            .title("Preview"),
+                        ])
+                    )
+                ),
+              S.listItem()
+                .title("404 page in Swedish")
+                .child(
+                  S.documentList()
+                    .title(`notFound documents`)
+                    .schemaType("notFound")
+                    .filter('_type == "notFound" && __i18n_lang == "sv-se"')
+                    .params({ baseLanguage: `en_US` })
+                    .canHandleIntent(
+                      S.documentTypeList("notFound").getCanHandleIntent()
+                    )
+                    .child((id) =>
+                      S.document()
+                        .schemaType("notFound")
+                        .documentId(id)
+                        .views([
+                          S.view.form(),
+                          S.view
+                            .component(Iframe)
+                            .options({
+                              url: (doc) => resolveProductionUrl(doc),
+                            })
+                            .title("Preview"),
+                        ])
+                    )
+                ),
             ])
         ),
       S.listItem()

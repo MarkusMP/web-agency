@@ -20,8 +20,6 @@ function filterDataToSingleItem(data: any, preview: any) {
     return data[0];
   }
 
-  console.log({ preview, data });
-
   if (preview) {
     return data.find((item) => item._id.startsWith(`drafts.`)) || data[0];
   }
@@ -29,11 +27,11 @@ function filterDataToSingleItem(data: any, preview: any) {
   return data[0];
 }
 
-export async function getStaticProps({ params, preview = false }: any) {
+export async function getStaticProps({ params, preview = false, locale }: any) {
   const client = await getClient(preview);
 
   const query = QUERY_HOME;
-  const queryParams = { language: "en-us" };
+  const queryParams = { language: locale === "en" ? "en-us" : "sv-se" };
   const data = await client.fetch(query, queryParams);
 
   if (!data) return { notFound: true };

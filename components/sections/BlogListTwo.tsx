@@ -25,7 +25,7 @@ const BlogListTwo = ({ title, listBlog }: IBlogListTwo) => {
                 key={item._id}
               >
                 <div>
-                  <Link href={`/${item.slug.current}`}>
+                  <Link href={`/blog/${item.slug.current}`}>
                     <div className="relative w-full h-full imageContainer cursor-pointer">
                       <Image
                         className="image"
@@ -57,7 +57,7 @@ const BlogListTwo = ({ title, listBlog }: IBlogListTwo) => {
                         </Moment>
                       </span>
                     </div>
-                    <Link href={`/${item.slug.current}`}>
+                    <Link href={`/blog/${item.slug.current}`}>
                       <h2 className="mb-2 text-2xl font-bold tracking-tight text-dark cursor-pointer">
                         <a href="#">{item.title && item.title}</a>
                       </h2>
@@ -66,7 +66,7 @@ const BlogListTwo = ({ title, listBlog }: IBlogListTwo) => {
                       {item.description && item.description}
                     </p>
                     <div className="flex justify-between items-center absolute bottom-3">
-                      <Link href={`/${item.slug.current}`}>
+                      <Link href={`/blog/${item.slug.current}`}>
                         <a className="inline-flex items-center font-medium text-black hover:underline">
                           {router.pathname.startsWith("/sv")
                             ? `Läs mer `

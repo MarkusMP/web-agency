@@ -6,6 +6,7 @@ export default {
   name: "notFound",
   type: "document",
   title: "404 Page",
+  i18n: true,
   fieldsets: [
     {
       title: "SEO",
