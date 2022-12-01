@@ -147,10 +147,10 @@ export default function Page({ data, preview, header, footer, settings }: any) {
         title={page?.titleSEO}
         description={page?.descriptionSEO}
         canonical={`${settings?.url}${
-          router.locale === "en" ? "" : "/sv/"
-        }/blog/${page.slug}`}
+          router.locale === "en" ? "" : "sv/"
+        }blog/${page.slug}`}
         openGraph={{
-          url: `${settings?.url}${router.locale === "en" ? "" : "/sv/"}/blog/${
+          url: `${settings?.url}${router.locale === "en" ? "" : "sv/"}blog/${
             page.slug
           }`,
           title: page?.titleSEO,

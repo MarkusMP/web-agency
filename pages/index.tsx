@@ -81,9 +81,9 @@ const Home: NextPage = ({ data, preview, settings, header, footer }: any) => {
       <NextSeo
         title={page?.titleSEO}
         description={page?.descriptionSEO}
-        canonical={`${settings?.url}${router.locale === "en" ? "" : "/sv/"}`}
+        canonical={`${settings?.url}${router.locale === "en" ? "" : "sv/"}`}
         openGraph={{
-          url: `${settings?.url}${router.locale === "en" ? "" : "/sv/"}`,
+          url: `${settings?.url}${router.locale === "en" ? "" : "sv/"}`,
           title: page?.titleSEO,
           description: page?.descriptionSEO,
           images: [
