@@ -127,9 +127,13 @@ export default function Page({ data, preview, header, footer, settings }: any) {
       <NextSeo
         title={page?.titleSEO}
         description={page?.descriptionSEO}
-        canonical={`${settings?.url}/${page.slug.current}`}
+        canonical={`${settings?.url}${router.locale === "en" ? "" : "/sv/"}${
+          page.slug.current
+        }`}
         openGraph={{
-          url: `${settings?.url}/${page.slug.current}`,
+          url: `${settings?.url}${router.locale === "en" ? "" : "/sv/"}${
+            page.slug.current
+          }`,
           title: page?.titleSEO,
           description: page?.descriptionSEO,
           images: [

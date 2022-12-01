@@ -10,6 +10,7 @@ import {
   QUERY_SETTINGS,
 } from "../data";
 import RenderSections from "../components/RenderSections";
+import { useRouter } from "next/router";
 
 function filterDataToSingleItem(data: any, preview: any) {
   if (!Array.isArray(data)) {
@@ -70,6 +71,8 @@ const Home: NextPage = ({ data, preview, settings, header, footer }: any) => {
   });
 
   const page = filterDataToSingleItem(previewData, preview);
+  const router = useRouter();
+  console.log(router.locale);
 
   const url = page?.ogImage && (urlFor(page.ogImage).url() as string);
 
@@ -78,9 +81,9 @@ const Home: NextPage = ({ data, preview, settings, header, footer }: any) => {
       <NextSeo
         title={page?.titleSEO}
         description={page?.descriptionSEO}
-        canonical={`${settings?.url}/`}
+        canonical={`${settings?.url}${router.locale === "en" ? "" : "/sv/"}`}
         openGraph={{
-          url: `${settings?.url}/`,
+          url: `${settings?.url}${router.locale === "en" ? "" : "/sv/"}`,
           title: page?.titleSEO,
           description: page?.descriptionSEO,
           images: [

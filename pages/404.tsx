@@ -6,6 +6,7 @@ import { QUERY_FOOTER, QUERY_HEADER } from "../data";
 import { groq } from "next-sanity";
 import { urlFor, usePreviewSubscription } from "../lib/sanity";
 import RenderSections from "../components/RenderSections";
+import { useRouter } from "next/router";
 
 function filterDataToSingleItem(data: any, preview: any) {
   if (!Array.isArray(data)) {
@@ -74,6 +75,7 @@ const NotFound: NextPage = ({
   const page = filterDataToSingleItem(previewData, preview);
 
   const url = page?.ogImage && (urlFor(page.ogImage).url() as string);
+  const router = useRouter();
 
   return (
     <>
@@ -81,7 +83,7 @@ const NotFound: NextPage = ({
         title={page?.titleSEO}
         description={page?.descriptionSEO}
         openGraph={{
-          url: `${settings?.url}/`,
+          url: `${settings?.url}${router.locale === "en" ? "" : "/sv/"}`,
           title: page?.titleSEO,
           description: page?.descriptionSEO,
           images: [

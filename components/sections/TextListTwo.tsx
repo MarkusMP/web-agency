@@ -5,9 +5,9 @@ const TextListTwo = ({ title, listTextTwo }: ITextListTwo) => {
   return (
     <section className="bg-black">
       <div className="container mx-auto px-6 py-12">
-        <h1 className="text-white text-3xl text-center pb-8">
+        <h2 className="text-white text-3xl text-center pb-8">
           {title && title}
-        </h1>
+        </h2>
         <div className=" mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {listTextTwo &&
             listTextTwo.map((item) => (
