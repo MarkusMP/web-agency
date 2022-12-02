@@ -26,14 +26,14 @@ const Contact = ({
     })
       .then(() => {
         toast.success(
-          router.pathname.startsWith("/sv")
+          router.locale === "sv"
             ? `E-postmeddelandet har skickats!`
             : `Email sent successfully`
         );
       })
       .catch(() => {
         toast.error(
-          router.pathname.startsWith("/sv")
+          router.locale === "sv"
             ? `Det gick inte att skicka e-post.`
             : `Error sending email`
         );

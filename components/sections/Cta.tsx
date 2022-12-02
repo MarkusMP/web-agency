@@ -17,9 +17,7 @@ const Cta = ({ title, btnText, description, page }: ICta) => {
           <div className="max-w-fit mx-auto flex flex-col group pt-8">
             <Link
               href={
-                router.pathname.startsWith("/sv")
-                  ? `/sv/${page.slug}`
-                  : `/${page.slug}`
+                router.locale === "sv" ? `/sv/${page.slug}` : `/${page.slug}`
               }
             >
               <a className="uppercase blinker text-white font-semibold tracking-wide font-semibold  text-lg">

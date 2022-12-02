@@ -2,8 +2,7 @@ import type { NextPage } from "next";
 import { getClient } from "../lib/sanity.server";
 import { NextSeo } from "next-seo";
 import Layout from "../components/Layout";
-import { QUERY_FOOTER, QUERY_HEADER } from "../data";
-import { groq } from "next-sanity";
+import { QUERY_FOOTER, QUERY_HEADER, QUERY_NOTFOUND } from "../data";
 import { urlFor, usePreviewSubscription } from "../lib/sanity";
 import RenderSections from "../components/RenderSections";
 import { useRouter } from "next/router";
@@ -27,7 +26,7 @@ function filterDataToSingleItem(data: any, preview: any) {
 export async function getStaticProps({ params, preview = false, locale }: any) {
   const client = await getClient(preview);
 
-  const query = groq`*[_type == "notFound" && __i18n_lang == $language]`;
+  const query = QUERY_NOTFOUND;
   const queryParams = {
     language: locale === "en" ? "en-us" : "sv-se",
   };

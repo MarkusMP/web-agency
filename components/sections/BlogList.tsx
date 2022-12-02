@@ -25,28 +25,16 @@ const BlogList = ({
                 key={item._id}
                 className="border-[1px] border-white px-3 pb-2 pt-1 max-w-xl w-full mx-auto"
               >
-                <Link
-                  href={
-                    router.pathname.startsWith("/sv")
-                      ? `/blog/${item.slug.current}`
-                      : `/blog/${item.slug.current}`
-                  }
-                >
+                <Link href={`/blog/${item.slug.current}`}>
                   <h3 className="text-lg text-white mt-2 mb-4 cursor-pointer max-w-fit">
                     {item.title}
                   </h3>
                 </Link>
 
-                <Link
-                  href={
-                    router.pathname.startsWith("/sv")
-                      ? `/blog/${item.slug.current}`
-                      : `/blog/${item.slug.current}`
-                  }
-                >
+                <Link href={`/blog/${item.slug.current}`}>
                   <a
                     aria-label={
-                      router.pathname.startsWith("/sv")
+                      router.locale === "sv"
                         ? `Läs mer om ${item.title && item.title}`
                         : `Read more about ${item.title && item.title}`
                     }
@@ -60,11 +48,7 @@ const BlogList = ({
         </div>
         <div className="max-w-fit mx-auto flex flex-col group pt-8">
           <Link
-            href={
-              router.pathname.startsWith("/sv")
-                ? `/sv/${page.slug}`
-                : `/${page.slug}`
-            }
+            href={router.locale === "sv" ? `/sv/${page.slug}` : `/${page.slug}`}
           >
             <a className="uppercase blinker text-white font-semibold tracking-wide font-semibold  text-lg">
               {btnText && btnText}

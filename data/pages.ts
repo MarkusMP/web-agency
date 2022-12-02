@@ -89,3 +89,5 @@ export const QUERY_BLOG = `
       descriptionSEO,
 }
 `;
+
+export const QUERY_NOTFOUND = `*[_type == "notFound" && __i18n_lang == $language]`;

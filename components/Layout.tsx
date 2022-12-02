@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { IFooter, IHeader } from "../interfaces";
 import dynamic from "next/dynamic";
-const Header = dynamic(() => import("./Header"), { ssr: false });
+import Header from "./Header";
 const Footer = dynamic(() => import("./Footer"), { ssr: false });
 
 type Props = {

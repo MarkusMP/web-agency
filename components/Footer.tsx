@@ -21,7 +21,7 @@ const Footer = ({ data }: Props) => {
     <footer className="bg-black">
       <div className="xl:container mx-auto pt-6 text-white w-full px-6 md:flex md:justify-between">
         <div className="flex flex-col">
-          <Link href={router.pathname.startsWith("/sv") ? "/sv" : "/"}>
+          <Link href={router.locale === "sv" ? "/sv" : "/"}>
             <span className="text-white blinker uppercase font-semibold text-3xl tracking-wider cursor-pointer">
               {data?.logo && data.logo}
             </span>
@@ -68,7 +68,9 @@ const Footer = ({ data }: Props) => {
                 data.linksList.map((item: any) => (
                   <li className="mb-2" key={item._id}>
                     <Link
-                      href={item.page && item.page.slug ? item.page.slug : "/"}
+                      href={
+                        item.page && item.page.slug ? `/${item.page.slug}` : "/"
+                      }
                     >
                       <a className="transition uppercase duration-150 border-b-2 mt-[2] border-transparent hover:border-white blinker tracking-wider cursor-pointer">
                         {item?.title && item.title}
@@ -87,7 +89,9 @@ const Footer = ({ data }: Props) => {
                 data.menu.map((item: any) => (
                   <li className="mb-2" key={item._id}>
                     <Link
-                      href={item.page && item.page.slug ? item.page.slug : "/"}
+                      href={
+                        item.page && item.page.slug ? `/${item.page.slug}` : "/"
+                      }
                     >
                       <a className="transition uppercase duration-150 border-b-2 mt-[2] border-transparent hover:border-white blinker tracking-wider cursor-pointer break-words w-full inline-block">
                         {item?.title && item.title}

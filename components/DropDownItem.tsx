@@ -18,7 +18,7 @@ const DropDownItem = ({ title, description }: any) => {
             <AiOutlineMinus
               className="text-2xl text-white"
               aria-label={
-                router.pathname.startsWith("/sv")
+                router.locale === "sv"
                   ? `Öppna för mer information om ${
                       title && title.toLowerCase()
                     }`
@@ -33,7 +33,7 @@ const DropDownItem = ({ title, description }: any) => {
             <AiOutlinePlus
               className="text-2xl text-white"
               aria-label={
-                router.pathname.startsWith("/sv")
+                router.locale === "sv"
                   ? `Öppna för mer information om ${
                       title && title.toLowerCase()
                     }`

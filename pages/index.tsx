@@ -72,7 +72,6 @@ const Home: NextPage = ({ data, preview, settings, header, footer }: any) => {
 
   const page = filterDataToSingleItem(previewData, preview);
   const router = useRouter();
-  console.log(router.locale);
 
   const url = page?.ogImage && (urlFor(page.ogImage).url() as string);
 

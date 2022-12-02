@@ -4,9 +4,8 @@ import React from "react";
 import { IBlogListTwo } from "../../interfaces";
 import { urlFor } from "../../lib/sanity";
 import { FiArrowRight } from "react-icons/fi";
-import "moment/locale/sv";
-import Moment from "react-moment";
 import { useRouter } from "next/router";
+import Published from "../Published";
 
 const BlogListTwo = ({ title, listBlog }: IBlogListTwo) => {
   const router = useRouter();
@@ -43,19 +42,7 @@ const BlogListTwo = ({ title, listBlog }: IBlogListTwo) => {
                   </Link>
                   <div className="p-6">
                     <div className="flex justify-between items-center text-p">
-                      <span className="text-sm">
-                        {router.pathname.startsWith("/sv")
-                          ? `Publicerades `
-                          : `Published `}
-                        <Moment
-                          locale={
-                            router.pathname.startsWith("/sv") ? `sv` : `en`
-                          }
-                          fromNow
-                        >
-                          {item.publishedAt}
-                        </Moment>
-                      </span>
+                      <Published published={item.publishedAt} />
                     </div>
                     <Link href={`/blog/${item.slug.current}`}>
                       <h2 className="mb-2 text-2xl font-bold tracking-tight text-dark cursor-pointer">
@@ -68,9 +55,7 @@ const BlogListTwo = ({ title, listBlog }: IBlogListTwo) => {
                     <div className="flex justify-between items-center absolute bottom-3">
                       <Link href={`/blog/${item.slug.current}`}>
                         <a className="inline-flex items-center font-medium text-black hover:underline">
-                          {router.pathname.startsWith("/sv")
-                            ? `Läs mer `
-                            : `Read more `}
+                          {router.locale === "sv" ? `Läs mer ` : `Read more `}
                           <FiArrowRight />
                         </a>
                       </Link>

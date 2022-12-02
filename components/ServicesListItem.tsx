@@ -36,7 +36,7 @@ const ServicesListItem = ({ data }: Props) => {
         <div className="py-2">
           <Link
             href={
-              router.pathname.startsWith("/sv")
+              router.locale === "sv"
                 ? `/sv/${data?.page.slug}`
                 : `/${data?.page.slug}`
             }

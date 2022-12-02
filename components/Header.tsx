@@ -11,7 +11,7 @@ type Props = {
 const Header = ({ data }: Props) => {
   const [open, setOpen] = useState(false);
   const [path, setPath] = useState(true);
-  const [navbar, setNavbar] = useState(true);
+  const [navbar, setNavbar] = useState(false);
   const btnRef = useRef();
   const menuRef = useRef(null);
   const router = useRouter();
@@ -63,10 +63,10 @@ const Header = ({ data }: Props) => {
       >
         <div className="xl:mx-auto xl:container w-full px-6 lg:flex lg:items-center lg:justify-between bg-transparent z-[3]">
           <div className="flex justify-between items-center z-[3]">
-            <Link href={router.pathname.startsWith("/sv") ? "/sv" : "/"}>
-              <span className="text-white blinker uppercase font-semibold text-3xl tracking-wider cursor-pointer z-[3]">
+            <Link href={router.locale === "sv" ? "/sv" : "/"} replace>
+              <a className="text-white blinker uppercase font-semibold text-2xl xs:text-3xl tracking-wider cursor-pointer z-[3]">
                 {data?.logo && data.logo}
-              </span>
+              </a>
             </Link>
 
             <button
@@ -111,12 +111,13 @@ const Header = ({ data }: Props) => {
                           href={
                             item.page && item.page.slug
                               ? !path
-                                ? item.page.slug
+                                ? `/${item.page.slug}`
                                 : `/sv/${item.page.slug}`
-                              : router.pathname.startsWith("/sv")
+                              : router.locale === "sv"
                               ? "/sv"
                               : "/"
                           }
+                          replace
                         >
                           <a className="transition uppercase duration-150 border-b-2 mt-[2] border-transparent hover:border-white blinker tracking-wider text-lg cursor-pointer">
                             {item.title && item.title}
@@ -129,7 +130,7 @@ const Header = ({ data }: Props) => {
               <ul className="lg:ml-auto">
                 {path ? (
                   <li className="px-0 lg:pl-6 py-2 lg:py-0">
-                    <Link href={"/"} locale="en">
+                    <Link replace href={"/"} locale="en">
                       <a
                         className="blinker tracking-wider text-lg cursor-pointer"
                         aria-label={`Change language of the website to English`}
@@ -140,7 +141,7 @@ const Header = ({ data }: Props) => {
                   </li>
                 ) : (
                   <li className="px-0 lg:pl-6 py-2 lg:py-0">
-                    <Link href={"/sv"} locale="sv">
+                    <Link replace href={"/sv"} locale="sv">
                       <a
                         className="blinker tracking-wider text-lg cursor-pointer"
                         aria-label={`Change language of the website to Swedish`}

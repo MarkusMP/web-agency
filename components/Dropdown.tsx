@@ -48,7 +48,9 @@ const Dropdown = ({ item, data, path }: any) => {
         {data &&
           swap(data, 0, 2).map((item: any) => (
             <li className="py-2 lg:py-1" key={item._id}>
-              <Link href={!path ? item.page.slug : `/sv/${item.page.slug}`}>
+              <Link
+                href={!path ? `/${item.page.slug}` : `/sv/${item.page.slug}`}
+              >
                 <a className="transition uppercase duration-150 border-b-2 mt-[2] border-transparent hover:border-white blinker tracking-wider text-lg cursor-pointer">
                   {item.title && item.title}
                 </a>

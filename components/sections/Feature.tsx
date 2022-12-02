@@ -36,9 +36,7 @@ const Feature = ({ title, image, description, btnText, page }: IFeature) => {
           <div className="max-w-fit mx-auto flex flex-col group ">
             <Link
               href={
-                router.pathname.startsWith("/sv")
-                  ? `/sv/${page.slug}`
-                  : `/${page.slug}`
+                router.locale === "sv" ? `/sv/${page.slug}` : `/${page.slug}`
               }
             >
               <a className="uppercase blinker font-semibold tracking-wide pb-2 text-lg">

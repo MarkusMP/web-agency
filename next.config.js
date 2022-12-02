@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+
+const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -11,6 +13,14 @@ const nextConfig = {
     locales: ["en", "sv"],
     defaultLocale: "en",
   },
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    config.plugins.push(new DuplicatePackageCheckerPlugin());
+    return config;
+  },
 };
 
-module.exports = nextConfig;
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
+module.exports = withBundleAnalyzer(nextConfig);
