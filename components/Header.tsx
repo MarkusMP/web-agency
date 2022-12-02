@@ -44,21 +44,6 @@ const Header = ({ data }: Props) => {
     };
   }, [router, open]);
 
-  data?.menu &&
-    data?.menu.map((item) => {
-      console.log({
-        item_page: item.page,
-        locale: router.locale,
-        url:
-          item.page && item.page.slug
-            ? router.locale === "en"
-              ? `/${item.page.slug}`
-              : `/sv/${item.page.slug}`
-            : router.locale === "sv"
-            ? "/sv"
-            : "/",
-      });
-    });
   return (
     <header>
       <nav

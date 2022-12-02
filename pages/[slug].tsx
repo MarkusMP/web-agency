@@ -12,7 +12,6 @@ import Layout from "../components/Layout";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import RenderSections from "../components/RenderSections";
-import Link from "next/link";
 
 function filterDataToSingleItem(data: any, preview: any) {
   if (!Array.isArray(data)) {
