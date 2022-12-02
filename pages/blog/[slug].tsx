@@ -45,6 +45,8 @@ export async function getStaticPaths({ preview = false, locales }: any) {
         return paths.push({ params: { slug: `${el.slug}` }, locale });
       } else if (el.__i18n_lang === "en-us" && locale === "en") {
         return paths.push({ params: { slug: `${el.slug}` }, locale });
+      } else {
+        return;
       }
     });
   });

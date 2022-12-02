@@ -1,12 +1,14 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
 import useWindowDimensions from "../hooks/useWindowsDimensions";
 
-const Dropdown = ({ item, data, path }: any) => {
+const Dropdown = ({ item, data }: any) => {
   const [openDropwdown, setOpenDropdown] = useState(false);
   const menuRef = useRef(null);
   const { width }: any = useWindowDimensions();
+  const router = useRouter();
 
   useEffect(() => {
     if (width < 1024) {
@@ -49,7 +51,11 @@ const Dropdown = ({ item, data, path }: any) => {
           swap(data, 0, 2).map((item: any) => (
             <li className="py-2 lg:py-1" key={item._id}>
               <Link
-                href={!path ? `/${item.page.slug}` : `/sv/${item.page.slug}`}
+                href={
+                  router.locale === "en"
+                    ? `/${item.page.slug}`
+                    : `/sv/${item.page.slug}`
+                }
               >
                 <a className="transition uppercase duration-150 border-b-2 mt-[2] border-transparent hover:border-white blinker tracking-wider text-lg cursor-pointer">
                   {item.title && item.title}

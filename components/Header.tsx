@@ -10,7 +10,6 @@ type Props = {
 
 const Header = ({ data }: Props) => {
   const [open, setOpen] = useState(false);
-  const [path, setPath] = useState(true);
   const [navbar, setNavbar] = useState(false);
   const btnRef = useRef();
   const menuRef = useRef(null);
@@ -25,11 +24,6 @@ const Header = ({ data }: Props) => {
   };
 
   useEffect(() => {
-    if (router.locale === "en" ? false : true) {
-      setPath(true);
-    } else {
-      setPath(false);
-    }
     const handler = (e: any) => {
       // @ts-ignore: Unreachable code error
       if (!menuRef.current.contains(e.target)) {
@@ -50,6 +44,21 @@ const Header = ({ data }: Props) => {
     };
   }, [router, open]);
 
+  data?.menu &&
+    data?.menu.map((item) => {
+      console.log({
+        item_page: item.page,
+        locale: router.locale,
+        url:
+          item.page && item.page.slug
+            ? router.locale === "en"
+              ? `/${item.page.slug}`
+              : `/sv/${item.page.slug}`
+            : router.locale === "sv"
+            ? "/sv"
+            : "/",
+      });
+    });
   return (
     <header>
       <nav
@@ -63,7 +72,7 @@ const Header = ({ data }: Props) => {
       >
         <div className="xl:mx-auto xl:container w-full px-6 lg:flex lg:items-center lg:justify-between bg-transparent z-[3]">
           <div className="flex justify-between items-center z-[3]">
-            <Link href={router.locale === "sv" ? "/sv" : "/"} replace>
+            <Link href={router.locale === "sv" ? "/sv" : "/"}>
               <a className="text-white blinker uppercase font-semibold text-2xl xs:text-3xl tracking-wider cursor-pointer z-[3]">
                 {data?.logo && data.logo}
               </a>
@@ -100,7 +109,6 @@ const Header = ({ data }: Props) => {
                   data?.menu.map((item) =>
                     item.page && item.page.slug === "#" ? (
                       <Dropdown
-                        path={path}
                         data={data.children}
                         item={item}
                         key={item._id}
@@ -110,14 +118,13 @@ const Header = ({ data }: Props) => {
                         <Link
                           href={
                             item.page && item.page.slug
-                              ? !path
+                              ? router.locale === "en"
                                 ? `/${item.page.slug}`
                                 : `/sv/${item.page.slug}`
                               : router.locale === "sv"
                               ? "/sv"
                               : "/"
                           }
-                          replace
                         >
                           <a className="transition uppercase duration-150 border-b-2 mt-[2] border-transparent hover:border-white blinker tracking-wider text-lg cursor-pointer">
                             {item.title && item.title}
@@ -128,9 +135,9 @@ const Header = ({ data }: Props) => {
                   )}
               </ul>
               <ul className="lg:ml-auto">
-                {path ? (
+                {router.locale === "en" ? (
                   <li className="px-0 lg:pl-6 py-2 lg:py-0">
-                    <Link replace href={"/"} locale="en">
+                    <Link href={"/"} locale="en">
                       <a
                         className="blinker tracking-wider text-lg cursor-pointer"
                         aria-label={`Change language of the website to English`}
@@ -141,7 +148,7 @@ const Header = ({ data }: Props) => {
                   </li>
                 ) : (
                   <li className="px-0 lg:pl-6 py-2 lg:py-0">
-                    <Link replace href={"/sv"} locale="sv">
+                    <Link href={"/sv"} locale="sv">
                       <a
                         className="blinker tracking-wider text-lg cursor-pointer"
                         aria-label={`Change language of the website to Swedish`}

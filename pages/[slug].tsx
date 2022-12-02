@@ -12,6 +12,7 @@ import Layout from "../components/Layout";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import RenderSections from "../components/RenderSections";
+import Link from "next/link";
 
 function filterDataToSingleItem(data: any, preview: any) {
   if (!Array.isArray(data)) {
@@ -46,6 +47,8 @@ export async function getStaticPaths({ preview = false, locales }: any) {
           return paths.push({ params: { slug: `${el.slug}` }, locale });
         } else if (el.__i18n_lang === "en-us" && locale === "en") {
           return paths.push({ params: { slug: `${el.slug}` }, locale });
+        } else {
+          return;
         }
       });
     });
@@ -146,6 +149,7 @@ export default function Page({ data, preview, header, footer, settings }: any) {
           ],
         }}
       />
+
       <Layout header={header} footer={footer}>
         {page?.content && <RenderSections sections={page.content} />}
       </Layout>
