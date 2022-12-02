@@ -8,7 +8,6 @@ import Document, {
 import Favicon from "../components/Favicon";
 import { GA_TRACKING_ID } from "../lib/gtag";
 const isProduction = process.env.NODE_ENV === "production";
-import Script from "next/script";
 
 class MyDocument extends Document {
   static async getInitialProps(
@@ -34,7 +33,7 @@ class MyDocument extends Document {
           />
           {isProduction && (
             <>
-              <Script
+              <script
                 async
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
               />
