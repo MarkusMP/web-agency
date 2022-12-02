@@ -120,7 +120,7 @@ const Header = ({ data }: Props) => {
                   )}
               </ul>
               <ul className="lg:ml-auto">
-                {router.locale === "en" ? (
+                {router.locale === "sv" ? (
                   <li className="px-0 lg:pl-6 py-2 lg:py-0">
                     <Link href={"/"} locale="en">
                       <a
